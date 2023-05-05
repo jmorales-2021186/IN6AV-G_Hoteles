@@ -15,9 +15,9 @@ export const NavBar = () => {
           <div >
             <nav>
               <ul className='nav'>
-                <li>lista</li>
-                <li>list</li>
-                <li>listsa</li>
+                <li>Hola</li>
+                <li>fasdf</li>
+                <li>fasd</li>
               </ul>
             </nav>
           </div>

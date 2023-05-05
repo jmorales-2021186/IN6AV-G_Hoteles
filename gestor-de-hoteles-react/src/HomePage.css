@@ -1,5 +1,6 @@
 
 *{
+  color: aliceblue;
   padding: 0;
   margin: 0;
 }
@@ -18,7 +19,7 @@
 }
  */
 .contenedor{
-  max-width: 1000px;
+  min-width: 1000px;
   min-height: 100px;
   background-color: linea;
   margin: auto;
@@ -27,15 +28,22 @@
 #logo{
   display: flex;
   align-items: center;
+  margin-left: 20px;
+  transition: all 300ms;
+}
+
+#logo:hover img{
+  transform: ;
 }
 
 
 
 header .contenedor{
+  width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-   /*  background-color: rgba(0,0,0, .5); */
+   background-color: rgba(225, 110, 85 ); 
 }
 
 header .nav{
@@ -43,11 +51,11 @@ header .nav{
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  
+  margin-right: 40px;
 }
 
 header .nav li {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
  
 }
