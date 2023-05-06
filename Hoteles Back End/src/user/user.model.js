@@ -33,6 +33,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         uppercase: true
+    },
+    image: {
+        type: String,
+        required: false
     }
 });
 

@@ -3,6 +3,8 @@
 const User = require('./user.model');
 const { validateData, encrypt, checkPassword } = require('../utils/validate');
 const { createToken } = require('../services/jwt');
+const fs = require('fs')
+const path = require('path')
 
 
 exports.test = (req, res)=>{
@@ -19,7 +21,8 @@ exports.userDefault = async()=>{
             password: 'admin',
             email: 'admin@gmail.com',
             phone: '12345678',
-            role: 'ADMIN'
+            role: 'ADMIN',
+            image: ''
         }
         data.password = await encrypt(data.password)
         let existDefault = await User.findOne({name: data.name});
@@ -85,11 +88,12 @@ exports.save = async(req, res)=>{
     }
 }
 
+//Funcion para todos los usarios 
+
 exports.login = async(req, res)=>{
     try{
-        //Obtener la data a validar (username y password)
         let data = req.body;
-        let credentials = { //Los datos obligatorios que va a validar la función validateData
+        let credentials = { 
             username: data.username,
             password: data.password
         }
@@ -149,4 +153,56 @@ exports.delete = async(req, res)=>{
     }
 }
 
+//FUNCIONES DE IMAGENES
 
+exports.addImage = async(req, res)=>{
+    try{
+        const userId = req.params.id;
+        const alreadyImage = await User.findOne({_id: userId})
+        let pathFile = './uploads/users/'
+        if(alreadyImage.image) fs.unlinkSync(`${pathFile}${alreadyImage.image}`) 
+        if(!req.files.image || !req.files.image.type) return res.status(400).send({message: 'Havent sent image'})
+        //crear la ruta para guardar la imagen
+        const filePath = req.files.image.path; 
+        const fileSplit = filePath.split('\\') 
+        const fileName = fileSplit[2];
+        const extension = fileName.split('\.'); 
+        const fileExt = extension[1]
+        console.log(fileExt)
+        if(
+            fileExt == 'png' || 
+            fileExt == 'jpg' || 
+            fileExt == 'jpeg' || 
+            fileExt == 'gif'
+        ){
+            const updatedUserImage = await User.findOneAndUpdate(
+                {_id: userId}, 
+                {image: fileName}, 
+                {new: true}
+            )
+            if(!updatedUserImage) return res.status(404).send({message: 'User not found and not updated'});
+            return res.send({message: 'User updated', updatedUserImage})
+        }
+        fs.unlinkSync(filePath)
+        return res.status(404).send({message: 'File extension cannot admited'});
+        
+
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error adding image', err})
+    }
+}
+
+exports.getImage = async(req, res)=>{
+    try{
+        const fileName = req.params.fileName;
+        const pathFile = `./uploads/users/${fileName}`
+
+        const image = fs.existsSync(pathFile);
+        if(!image) return res.status(404).send({message: 'image not found'})
+        return res.sendFile(path.resolve(pathFile))
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting image'});
+    }
+}

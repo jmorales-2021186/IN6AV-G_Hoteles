@@ -10,6 +10,7 @@ const app = express();
 const port = process.env.PORT
 
 //Exportar rutas
+const userRoutes = require('../src/user/user.routes');
 
 
 
@@ -20,9 +21,10 @@ app.use(cors());
 app.use(morgan('dev'))
 
 //Utilizar las rutas
-
+app.use('/user', userRoutes);
 
 exports.initServer = ()=>{
     app.listen(port);
     console.log(`Server http running in port ${port}`);
 }
+
