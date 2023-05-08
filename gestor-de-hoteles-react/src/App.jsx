@@ -9,6 +9,8 @@ export const App = ()=> {
   return (
     <>
       <Outlet/>
+
+      
     </>
   )
 }
