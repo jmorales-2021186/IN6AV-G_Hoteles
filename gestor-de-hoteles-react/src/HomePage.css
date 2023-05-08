@@ -1462,13 +1462,14 @@ blockquote {
     url(./assets/header.jpg);
     background-size: cover;
     background-position: center;
+    padding: 0.1px;
 }
 
 .reservar{
   color: #ccc;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 40vh;
 }
 
 .reservar-button{
