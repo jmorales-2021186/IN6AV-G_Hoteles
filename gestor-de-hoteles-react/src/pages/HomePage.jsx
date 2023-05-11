@@ -20,6 +20,9 @@ export const HomePage = () => {
         
       </div>
 
+   {/*  <div className='hola'>
+      <h1>Hoteles</h1>
+    </div> */}
 
     </>
   )

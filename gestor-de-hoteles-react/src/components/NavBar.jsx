@@ -15,7 +15,7 @@ export const NavBar = () => {
               <span className="navbar-toggler-icon"></span>
             </button> */}
             <div className="" id="navbars-rs-food" style={{ marginRight: '120px' }}>
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav ml-auto " style={{marginLeft: '10px'}}>
                 <li className="nav-item active"><a className="nav-link" >Home</a></li>
                 <li className="nav-item"><a className="nav-link" >Menu</a></li>
                 <li className="nav-item"><a className="nav-link" >About</a></li>
