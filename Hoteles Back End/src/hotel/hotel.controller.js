@@ -1,76 +1,55 @@
 'use strict'
 
-const Room = require('./room.model')
+const User = require('../user/user.model')
+const Room = require('../room/room.model')
+const Event = require('../event/event.model')
+const Hotel = require('./hotel.model')
 const fs = require('fs')
 const path = require('path')
 
-
-exports.addRoom = async(req, res)=>{
-    try {
+exports.addHotel = async(req, res)=>{
+    try{
         let data = req.body;
-        let existRoom = await Room.findOne({name: data.name})
-        if(existRoom){
-            return res.send({message: 'Room alredy created'})
+        let existHotel = await Hotel.findOne({name: data.name})
+        if(existHotel){
+            return res.send({message: 'Hotel alredy created '})
         }
-        let room = new Room(data)
-        await room.save()
-        return res.send({mmesage: 'Room saved succesfully'})
-    }
-     catch (err) { 
-        console.error(err)
-        return res.status(500).send({message: 'Error creating Room'})
-    }
-}
-
-<<<<<<< HEAD
-exports.getTypes = async(req, res)=>{
-=======
-exports.getRooms = async (req, res)=>{
->>>>>>> jmorales
-    try {
-        let rooms = await Room.find()
-        return res.send({message: 'Rooms Found', rooms})
-    } catch (err) {
-            console.error(err)
-            return res.status(500).send({message: 'Eroror getting Rooms'})
-    }
-}
-
-<<<<<<< HEAD
-exports.getType = async(req, res)=>{
-    try{
-        let roomId = req.params.id
-        let room = await Room.findOne({_id: roomId})
-        if(!room) return res.status(500).send({message:'Error gettign Rooms'})
-=======
-exports.getRoom = async(req, res)=>{
-    try{
-        let roomId = req.params.id
-        let room = await Room.findOne({_id: roomId})
-        if(!room) return res.status(500).send({message:'this room does not exist'})
-        return res.send({mmesage: 'get room', room})
->>>>>>> jmorales
+        let hotel = new Hotel(data)
+        await hotel.save()
+        return res.send({message: 'Hotel saved succesfully'})
     }catch(err){
         console.error(err)
-        return res.status(500).send({message: 'Error getting '})
+        return res.status(500).send({message: 'Error creating Hotel'})
     }
 }
 
-exports.deleteRoom = async(req, res)=>{
+exports.getHotels = async(req, res)=>{
     try{
-        let roomId = req.params.id
-        let deleteRoom = await Room.findOneAndDelete({_id: roomId})
-        if(!deleteRoom) return res.status(404).send({message: 'Room deleted successfully'})
+        let hotels = await Room.find();
+        return res.send({message: 'Hotels Found', hotels})
     }catch(err){
         console.error(err)
-        return res.status(500).send({message: 'Error delet '})
+        return res.status(500).send({message: 'Error getting Hotels'})
     }
 }
+
+exports.getHotel = async(req, res)=>{
+    try{
+        let hotelId = req.parms.id
+        let hotel = await Hotel.findOne({_id: hotelId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        return res.send({message: 'Hotel Found ', hotel})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error getting Hotel'})
+    }
+}
+
 
 exports.addImage = async(req, res)=>{
     try{
         const roomId = req.params.id; 
-        const alreadyImage = await Room.findOne({_id: roomId})
+        const alreadyImage = await Hotel.findOne({_id: roomId})
         let pathFile = './uploads/bedrooms/'
         if(alreadyImage.image) fs.unlinkSync(`${pathFile}${alreadyImage.image}`) 
         if(!req.files.image || !req.files.image.type) return res.status(400).send({message: 'Havent sent image'})
@@ -86,7 +65,7 @@ exports.addImage = async(req, res)=>{
             fileExt == 'jpeg' || 
             fileExt == 'gif'
         ){
-            const updatedRoomImage = await Room.findOneAndUpdate(
+            const updatedRoomImage = await Hotel.findOneAndUpdate(
                 {_id: roomId}, 
                 {image: fileName}, 
                 {new: true}
@@ -118,8 +97,14 @@ exports.getImage = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
-/** */
-=======
-/**aaa */
->>>>>>> jmorales
+exports.deleteHotel = async(req, res)=>{
+    try{
+        let hotelId = req.params.id
+        let deleteHotel = await Hotel.findOneAndDelete({_id: hotelId})
+        if(!deleteHotel) return res.status(404).send({message: 'Hotel deleted succesfully'})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error deleting Hotel'})
+    }
+}
+/***************** */
