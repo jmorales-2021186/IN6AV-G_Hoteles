@@ -8,3 +8,5 @@ const { userDefault } = require('./src/user/user.controller');
 mongoConfig.connect();
 app.initServer();
 userDefault();
+
+/*asdfasfasdfa */

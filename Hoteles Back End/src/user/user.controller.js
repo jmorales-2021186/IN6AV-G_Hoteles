@@ -7,9 +7,7 @@ const fs = require('fs')
 const path = require('path')
 
 
-exports.test = (req, res)=>{
-    res.send({message: 'Test function is running'});
-}
+//===============FUNCIONES UNICAMENTE DE ADMINISTRADOR==================//
 
 //Usuario Admin Por defecto
 exports.userDefault = async()=>{
@@ -39,6 +37,20 @@ exports.userDefault = async()=>{
         return res.status(500).send({message: 'Error server'})
     }
 }
+
+//El administrador puede ver todos los usuariosregistrados//
+
+exports.seeRegisteredUsers = async(req, res)=>{
+    try{
+        let userGet = await User.find({role: 'CLIENT'})
+        return res.send({message: 'Todos los usuarios registrados :', userGet});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting product'});
+    }
+}
+
+
 
 //Registro Unicamente para Cliente se le agrega rol CLIENT por defecto no se puede cambiar
 exports.register = async(req, res)=>{
@@ -206,3 +218,5 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
+
+/***aaaaaaaa */
