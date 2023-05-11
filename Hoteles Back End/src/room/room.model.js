@@ -12,6 +12,7 @@ const roomSchema = mongoose.Schema({
         required: true
     },
     capacity: {
+<<<<<<< HEAD
         name: Number,
         required: true
     },
@@ -33,3 +34,27 @@ const roomSchema = mongoose.Schema({
 module.exports = mongoose.model('Room', roomSchema)
 
 /** */
+=======
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    image: {
+        type: String,
+        required: false
+    },
+    status: {
+        type: Boolean,
+        required: true
+    }
+},{
+    versionKey: false
+});
+
+module.exports = mongoose.model('Room', roomSchema)
+
+/********** */
+>>>>>>> jmorales
