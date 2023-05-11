@@ -11,8 +11,4 @@ api.delete('/delete/:id', typeController.deleteTypE)
 
 module.exports = api;
 
-<<<<<<< HEAD
-/** */
-=======
 /*aaaaaaaaaaaaaaaaaaaaaaaaaaaa* */
->>>>>>> jmorales

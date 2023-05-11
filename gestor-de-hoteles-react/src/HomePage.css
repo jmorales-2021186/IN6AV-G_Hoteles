@@ -141,7 +141,33 @@ button:focus {
   HEADER
 -------------------------------------------------------------------*/
 
+.logo{
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: 'Unbounded', cursive;
+  cursor: pointer;
+}
 
+.logo p{
+  margin: 0;
+}
+
+.logo img{
+  margin-top: -5px;
+}
+
+.logo .rojo{
+  color: rgba(238, 44, 60, .8);
+}
+
+.user{
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
+  border: 1px solid black;
+}
 
 .top-navbar {
   position: relative;
@@ -191,7 +217,7 @@ button:focus {
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item:hover {
-  background: #d0a772;
+  background: rgba(238, 44, 60, .8);
   color: #ffffff;
 }
 
@@ -1461,7 +1487,7 @@ blockquote {
 
 /*********************************************************** HOME PAGE ********************************************************/
 .hero{
-  margin-top: 93px;
+  margin-top: 85px;
   width: 100%;
   height: 87.5vh;
   background-image:  linear-gradient(
@@ -1499,3 +1525,4 @@ blockquote {
   border-radius: 600px 100px 500px 200px;
   margin-top: 20px;
 } */
+

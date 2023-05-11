@@ -219,8 +219,4 @@ exports.getImage = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
-/** asdf*/
-=======
 /***aaaaaaaa */
->>>>>>> jmorales

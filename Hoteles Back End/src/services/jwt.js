@@ -21,8 +21,4 @@ exports.createToken = async(user)=>{
         return err;
     }
 }
-<<<<<<< HEAD
-/** asdf*/
-=======
 /**asdfasdfasdf*/
->>>>>>> jmorales

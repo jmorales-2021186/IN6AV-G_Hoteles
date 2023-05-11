@@ -18,8 +18,4 @@ module.exports = mongoose.model('Type', typeSchema)
 
 
 
-<<<<<<< HEAD
-/** */
-=======
 /** aaaaaaaaaaaaaaaa*/
->>>>>>> jmorales

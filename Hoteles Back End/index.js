@@ -9,8 +9,4 @@ mongoConfig.connect();
 app.initServer();
 userDefault();
 
-<<<<<<< HEAD
-/** */
-=======
 /*asdfasfasdfa */
->>>>>>> jmorales
