@@ -1,4 +1,3 @@
-// type, name, description
 'use strict'
 
 const mongoose = require('mongoose')
@@ -17,5 +16,3 @@ const typeSchema = mongoose.Schema({
 module.exports = mongoose.model('Type', typeSchema)
 
 
-
-/** aaaaaaaaaaaaaaaa*/

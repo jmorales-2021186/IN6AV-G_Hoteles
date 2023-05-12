@@ -42,5 +42,3 @@ exports.checkUpdate = (data)=>{
     }
     return true;
 }
-
-/**asasdfasdfdf */

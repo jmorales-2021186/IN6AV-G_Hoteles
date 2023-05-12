@@ -10,7 +10,7 @@ const eventSchema = mongoose.Schema({
     },
     date: {
         type: Date,
-        required: false
+        required: true
     },
     price:{
         type: Number,
@@ -22,4 +22,3 @@ const eventSchema = mongoose.Schema({
 
 module.exports = mongoose.model('Event', eventSchema)
 
-/*aaaaaaaaaaaaaaa */

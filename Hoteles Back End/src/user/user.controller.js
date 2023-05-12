@@ -100,6 +100,8 @@ exports.save = async(req, res)=>{
     }
 }
 
+
+
 //Funcion para todos los usarios 
 
 exports.login = async(req, res)=>{
@@ -218,5 +220,3 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
-
-/***aaaaaaaa */

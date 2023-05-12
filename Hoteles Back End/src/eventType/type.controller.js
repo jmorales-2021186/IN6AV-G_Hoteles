@@ -47,4 +47,3 @@ exports.deleteTypE = async(req, res)=>{
     }
 }
 
-/*aaaaaaaaaaaaaaaaaaaaa* */

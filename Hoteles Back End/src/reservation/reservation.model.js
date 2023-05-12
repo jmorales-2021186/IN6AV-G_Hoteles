@@ -11,10 +11,10 @@ const reservationSchema = mongoose.Schema({
        type: mongoose.Schema.Types.ObjectId,
        ref: 'Room'
     },
-    services: {
+    services: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Servicio'
-    },
+    }],
     total: {
         type: Number,
         required: true
@@ -29,4 +29,3 @@ module.exports = mongoose.model('Reservation', reservationSchema)
 
 
 
-/**aaaaaaaaaaaaaaaaaaaa */
