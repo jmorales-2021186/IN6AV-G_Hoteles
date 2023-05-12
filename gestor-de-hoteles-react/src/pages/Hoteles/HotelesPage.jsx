@@ -6,7 +6,7 @@ export const HotelesPage = () => {
     return (
         <>
             <NavBar />
-            <div style={{marginTop: '100px'}}>
+            <div className='display-hoteles'>
                 <ListarHoteles/>
             </div>
         </>

@@ -465,6 +465,8 @@ button:focus {
 }
 
 .gallery-single {
+  width: 300px;
+  min-height: 300px;
   position: relative;
   overflow: hidden;
   -webkit-box-shadow: 0 0 10px #ccc;
@@ -1532,4 +1534,18 @@ blockquote {
   width: 500px;
   margin: auto;
   margin-top: 100px;
+}
+
+
+/*****************************************************************************************************************/
+
+/*************************************************HOTELES*********************************************************/
+
+
+.display-hoteles{
+  max-width: 80%;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
 }
