@@ -12,7 +12,7 @@ const roomSchema = mongoose.Schema({
         required: true
     },
     capacity: {
-        name: Number,
+        type: Number,
         required: true
     },
     price: {
@@ -26,8 +26,7 @@ const roomSchema = mongoose.Schema({
     status:{
         type: Boolean,
         required: true
-    },
-        versionKey: false
+    }
     });
 
 module.exports = mongoose.model('Room', roomSchema)
