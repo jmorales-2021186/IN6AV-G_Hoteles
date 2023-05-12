@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// type, name, description
-=======
-
->>>>>>> msicajan
 'use strict'
 
 const mongoose = require('mongoose')
@@ -21,12 +16,3 @@ const typeSchema = mongoose.Schema({
 module.exports = mongoose.model('Type', typeSchema)
 
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-/** */
-=======
-/** aaaaaaaaaaaaaaaa*/
->>>>>>> jmorales
-=======
->>>>>>> msicajan

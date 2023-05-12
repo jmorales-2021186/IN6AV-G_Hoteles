@@ -38,12 +38,5 @@ exports.isAdmin = async(req, res, next)=>{
         return res.status(403).send({message: 'Error unauthorized user'});
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* asdf*/
-=======
-/* aaaaaaaaaaaaasdf*/
->>>>>>> jmorales
-=======
-/* aaaaaaaaaaaaasdf*/
->>>>>>> msicajan
+
+

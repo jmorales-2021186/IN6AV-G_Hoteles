@@ -23,21 +23,9 @@ api.delete('/delete/:id', userController.delete);
 //Funcion del ADMIN para crear un administrador de un hotel
 api.post('/save', userController.save);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-module.exports = api;
 
-/**asdf */
-=======
-=======
->>>>>>> msicajan
 //Funcion para ver todos los usurios registrados
 api.get('/seeUsers', userController.seeRegisteredUsers)
 
 module.exports = api;
 
-/**aasdfasdfasdfsdf */
-<<<<<<< HEAD
->>>>>>> jmorales
-=======
->>>>>>> msicajan

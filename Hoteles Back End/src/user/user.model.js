@@ -42,12 +42,3 @@ const userSchema = mongoose.Schema({
 
 module.exports = mongoose.model('User', userSchema);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**asdf */
-=======
-/**asdddddf */
->>>>>>> jmorales
-=======
-/**asdddddf */
->>>>>>> msicajan

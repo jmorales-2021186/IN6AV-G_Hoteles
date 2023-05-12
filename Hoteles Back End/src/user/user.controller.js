@@ -100,11 +100,8 @@ exports.save = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> msicajan
 //Funcion para todos los usarios 
 
 exports.login = async(req, res)=>{
@@ -223,13 +220,3 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-/** asdf*/
-=======
-/***aaaaaaaa */
->>>>>>> jmorales
-=======
-/***aaaaaaaa */
->>>>>>> msicajan

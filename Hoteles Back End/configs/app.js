@@ -38,13 +38,5 @@ exports.initServer = ()=>{
     console.log(`Server http running in port ${port}`);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* asdf*/
-=======
-/* aaaaaaaaaaaasdf*/
->>>>>>> jmorales
-=======
-/* aaaaaaaaaaaasdf*/
->>>>>>> msicajan
+
 

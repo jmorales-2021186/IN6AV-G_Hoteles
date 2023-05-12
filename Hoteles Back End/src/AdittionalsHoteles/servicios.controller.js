@@ -2,8 +2,6 @@
 
 const Servicios = require('./servicios.model')
 
-<<<<<<< HEAD
-=======
 exports.emptyService = async(req, res)=>{
     try{
       
@@ -20,7 +18,6 @@ exports.emptyService = async(req, res)=>{
     }
 }
 
->>>>>>> msicajan
 exports.addServices = async(req, res)=>{
     try{
         let data = req.body;
@@ -76,11 +73,3 @@ exports.update = async(req, res)=>{
         return res.status(500).send({message: 'Error getting Service'})
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**/aaaaaaaaaa */
-=======
-/**/
->>>>>>> msicajan
-=======
->>>>>>> jmorales

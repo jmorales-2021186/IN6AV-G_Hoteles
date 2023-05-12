@@ -42,13 +42,3 @@ exports.checkUpdate = (data)=>{
     }
     return true;
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**asdf */
-=======
-/**asasdfasdfdf */
->>>>>>> jmorales
-=======
-/**asasdfasdfdf */
->>>>>>> msicajan
