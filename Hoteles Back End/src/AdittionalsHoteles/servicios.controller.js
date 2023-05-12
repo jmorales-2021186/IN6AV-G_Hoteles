@@ -2,6 +2,22 @@
 
 const Servicios = require('./servicios.model')
 
+exports.emptyService = async(req, res)=>{
+    try{
+      
+        let data = {
+            name: 'Ninguno',
+            description: 'Ninguno',
+            price: 0
+        }
+        let service = new Servicios(data)
+        let existSer = await Servicios.findOne({name: data.name})
+        if(!existSer) await service.save()
+    }catch(err){
+        console.log(err)
+    }
+}
+
 exports.addServices = async(req, res)=>{
     try{
         let data = req.body;
@@ -57,4 +73,3 @@ exports.update = async(req, res)=>{
         return res.status(500).send({message: 'Error getting Service'})
     }
 }
-/**/aaaaaaaaaa */

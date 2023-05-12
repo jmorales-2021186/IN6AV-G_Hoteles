@@ -29,7 +29,7 @@ app.use('/user', userRoutes);
 app.use('/room', roomRoutes);
 app.use('/services', servicesRoutes);
 app.use('/reser', reservationRoutes);
-app.use('/hoteles', hotelesRoutes);
+app.use('/hotels', hotelesRoutes);
 app.use('/type', typeRoutes);
 app.use('/event', eventRoutes);
 
@@ -38,9 +38,5 @@ exports.initServer = ()=>{
     console.log(`Server http running in port ${port}`);
 }
 
-<<<<<<< HEAD
-/* asdf*/
-=======
-/* aaaaaaaaaaaasdf*/
->>>>>>> jmorales
+
 

@@ -107,4 +107,29 @@ exports.deleteHotel = async(req, res)=>{
         return res.status(500).send({message: 'Error deleting Hotel'})
     }
 }
-/***************** */
+
+exports.addRooms = async(req, res)=>{
+    try{
+        let hotelId = req.params.id
+        let data = req.body;
+        let existHotel = await Hotel.findOne({_id: hotelId})
+        if(!existHotel) return res.status(404).send({message: 'this hotel does not exist'})
+        let Room = existHotel.room;
+                //Verificar que no se repitan las habitaciones
+                for(let i=0; i<=Room.length; i++){
+                    if(Room[i] == data.room) return res.send({message: 'You have already added this product to the cart'});
+                }
+        let addRoom = await Hotel.findOneAndUpdate(
+            {_id: hotelId},
+            {$push:{
+            room: data.room
+            }},
+            {new: true}
+        )
+        return res.send({message: 'Your product has been added', addRoom})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'error adding rooms'})
+    }
+}
+

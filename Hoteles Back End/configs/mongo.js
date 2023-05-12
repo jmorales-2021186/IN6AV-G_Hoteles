@@ -13,8 +13,3 @@ exports.connect = async()=>{
         console.error(e);
     }
 }
-<<<<<<< HEAD
-/* asdf*/
-=======
-/* aaaaaaaaaaaaaaaasdf*/
->>>>>>> jmorales

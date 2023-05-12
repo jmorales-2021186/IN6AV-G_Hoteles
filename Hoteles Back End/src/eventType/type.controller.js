@@ -47,8 +47,3 @@ exports.deleteTypE = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
-/** */
-=======
-/*aaaaaaaaaaaaaaaaaaaaa* */
->>>>>>> jmorales

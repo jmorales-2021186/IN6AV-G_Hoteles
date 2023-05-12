@@ -12,6 +12,7 @@ exports.addRoom = async(req, res)=>{
         if(existRoom){
             return res.send({message: 'Room alredy created'})
         }
+        data.status = true;
         let room = new Room(data)
         await room.save()
         return res.send({mmesage: 'Room saved succesfully'})
@@ -22,11 +23,13 @@ exports.addRoom = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
+
 exports.getTypes = async(req, res)=>{
-=======
+
 exports.getRooms = async (req, res)=>{
 >>>>>>> jmorales
+
+exports.getRooms = async (req, res)=>{
     try {
         let rooms = await Room.find()
         return res.send({message: 'Rooms Found', rooms})
@@ -36,20 +39,20 @@ exports.getRooms = async (req, res)=>{
     }
 }
 
-<<<<<<< HEAD
+
 exports.getType = async(req, res)=>{
     try{
         let roomId = req.params.id
         let room = await Room.findOne({_id: roomId})
         if(!room) return res.status(500).send({message:'Error gettign Rooms'})
-=======
+
+
 exports.getRoom = async(req, res)=>{
     try{
         let roomId = req.params.id
         let room = await Room.findOne({_id: roomId})
         if(!room) return res.status(500).send({message:'this room does not exist'})
         return res.send({mmesage: 'get room', room})
->>>>>>> jmorales
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error getting '})
@@ -117,9 +120,3 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
-
-<<<<<<< HEAD
-/** */
-=======
-/**aaa */
->>>>>>> jmorales
