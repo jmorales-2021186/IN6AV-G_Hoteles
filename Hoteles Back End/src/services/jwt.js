@@ -21,12 +21,3 @@ exports.createToken = async(user)=>{
         return err;
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-/** asdf*/
-=======
-/**asdfasdfasdf*/
->>>>>>> jmorales
-=======
-/**asdfasdfasdf*/
->>>>>>> msicajan

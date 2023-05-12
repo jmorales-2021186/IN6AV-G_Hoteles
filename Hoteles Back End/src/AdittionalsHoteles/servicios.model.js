@@ -22,4 +22,3 @@ const servicioSchema = mongoose.Schema({
 
     module.exports = mongoose.model('Servicio', servicioSchema);
 
-    /**aaaaaaaaaaaaaa */

@@ -14,8 +14,3 @@ api.post('/add', eventController.addEvent)
 
 module.exports = api
 
-/**aaaaaaaaaaaaaa */
-<<<<<<< HEAD
->>>>>>> jmorales
-=======
->>>>>>> msicajan
