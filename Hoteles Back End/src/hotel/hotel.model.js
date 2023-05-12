@@ -12,11 +12,9 @@ const hotelSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    room:{type: mongoose.Schema.Types.ObjectId, ref: 'Room'},
+    room:[{type: mongoose.Schema.Types.ObjectId, ref: 'Room'}],
 
     admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-
-    event: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
 
    image:{
     type: String,
