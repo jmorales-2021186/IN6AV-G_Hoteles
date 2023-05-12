@@ -24,4 +24,3 @@ const hotelSchema = mongoose.Schema({
 
 module.exports = mongoose.model('Hotel', hotelSchema)
 
-/************ */
