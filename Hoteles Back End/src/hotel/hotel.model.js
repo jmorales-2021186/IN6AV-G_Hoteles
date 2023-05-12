@@ -9,6 +9,7 @@ const hotelSchema = mongoose.Schema({
         required: true
     },
     address:{
+<<<<<<< HEAD
         type: String,
         required: true
     },
@@ -18,6 +19,14 @@ const hotelSchema = mongoose.Schema({
 
     event: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
 
+=======
+        type: String, 
+        required: true
+    },
+    
+    admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    
+>>>>>>> msicajan
    image:{
     type: String,
     required: false
@@ -25,5 +34,8 @@ const hotelSchema = mongoose.Schema({
 })
 
 module.exports = mongoose.model('Hotel', hotelSchema)
+<<<<<<< HEAD
 
 /************ */
+=======
+>>>>>>> msicajan

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // type, name, description
+=======
+
+>>>>>>> msicajan
 'use strict'
 
 const mongoose = require('mongoose')
@@ -19,7 +23,10 @@ module.exports = mongoose.model('Type', typeSchema)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** */
 =======
 /** aaaaaaaaaaaaaaaa*/
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

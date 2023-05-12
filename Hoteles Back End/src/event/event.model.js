@@ -11,10 +11,14 @@ const eventSchema = mongoose.Schema({
     date: {
         type: Date,
 <<<<<<< HEAD
+<<<<<<< HEAD
         required: true
 =======
         required: false
 >>>>>>> jmorales
+=======
+        required: true
+>>>>>>> msicajan
     },
     price:{
         type: Number,
@@ -27,7 +31,10 @@ const eventSchema = mongoose.Schema({
 module.exports = mongoose.model('Event', eventSchema)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** */
 =======
 /*aaaaaaaaaaaaaaa */
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

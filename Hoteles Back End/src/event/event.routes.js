@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** */
 =======
+=======
+>>>>>>> msicajan
 'use strict'
 
 const express = require('express')
@@ -12,4 +15,7 @@ api.post('/add', eventController.addEvent)
 module.exports = api
 
 /**aaaaaaaaaaaaaa */
+<<<<<<< HEAD
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

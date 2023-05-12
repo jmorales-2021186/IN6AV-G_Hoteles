@@ -100,6 +100,11 @@ exports.save = async(req, res)=>{
     }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> msicajan
 //Funcion para todos los usarios 
 
 exports.login = async(req, res)=>{
@@ -220,7 +225,11 @@ exports.getImage = async(req, res)=>{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** asdf*/
 =======
 /***aaaaaaaa */
 >>>>>>> jmorales
+=======
+/***aaaaaaaa */
+>>>>>>> msicajan

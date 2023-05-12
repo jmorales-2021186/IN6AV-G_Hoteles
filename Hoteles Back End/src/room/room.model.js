@@ -13,6 +13,7 @@ const roomSchema = mongoose.Schema({
     },
     capacity: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         name: Number,
         required: true
     },
@@ -35,6 +36,8 @@ module.exports = mongoose.model('Room', roomSchema)
 
 /** */
 =======
+=======
+>>>>>>> msicajan
         type: String,
         required: true
     },
@@ -57,4 +60,7 @@ module.exports = mongoose.model('Room', roomSchema)
 module.exports = mongoose.model('Room', roomSchema)
 
 /********** */
+<<<<<<< HEAD
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

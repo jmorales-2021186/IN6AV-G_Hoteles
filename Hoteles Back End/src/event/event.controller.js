@@ -75,7 +75,12 @@ exports.delete = async(req, res)=>{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** */
 =======
 /**aaaaaaaaaaaaaa */
 >>>>>>> jmorales
+=======
+/** */
+/**aaaaaaaaaaaaaa */
+>>>>>>> msicajan

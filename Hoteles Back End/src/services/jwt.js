@@ -22,7 +22,11 @@ exports.createToken = async(user)=>{
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** asdf*/
 =======
 /**asdfasdfasdf*/
 >>>>>>> jmorales
+=======
+/**asdfasdfasdf*/
+>>>>>>> msicajan

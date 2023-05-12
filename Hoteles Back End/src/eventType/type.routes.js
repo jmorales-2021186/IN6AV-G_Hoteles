@@ -10,9 +10,12 @@ api.get('/get/:id', typeController.getType)
 api.delete('/delete/:id', typeController.deleteTypE)
 
 module.exports = api;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 /** */
 =======
 /*aaaaaaaaaaaaaaaaaaaaaaaaaaaa* */
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

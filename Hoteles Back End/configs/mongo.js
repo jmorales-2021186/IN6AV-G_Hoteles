@@ -14,7 +14,12 @@ exports.connect = async()=>{
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* asdf*/
 =======
 /* aaaaaaaaaaaaaaaasdf*/
 >>>>>>> jmorales
+=======
+/* asdf*/
+/* aaaaaaaaaaaaaaaasdf*/
+>>>>>>> msicajan

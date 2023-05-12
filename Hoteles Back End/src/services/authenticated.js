@@ -39,7 +39,11 @@ exports.isAdmin = async(req, res, next)=>{
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* asdf*/
 =======
 /* aaaaaaaaaaaaasdf*/
 >>>>>>> jmorales
+=======
+/* aaaaaaaaaaaaasdf*/
+>>>>>>> msicajan

@@ -24,14 +24,20 @@ api.delete('/delete/:id', userController.delete);
 api.post('/save', userController.save);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module.exports = api;
 
 /**asdf */
 =======
+=======
+>>>>>>> msicajan
 //Funcion para ver todos los usurios registrados
 api.get('/seeUsers', userController.seeRegisteredUsers)
 
 module.exports = api;
 
 /**aasdfasdfasdfsdf */
+<<<<<<< HEAD
 >>>>>>> jmorales
+=======
+>>>>>>> msicajan

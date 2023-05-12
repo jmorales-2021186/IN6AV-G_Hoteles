@@ -39,8 +39,12 @@ exports.initServer = ()=>{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* asdf*/
 =======
 /* aaaaaaaaaaaasdf*/
 >>>>>>> jmorales
+=======
+/* aaaaaaaaaaaasdf*/
+>>>>>>> msicajan
 

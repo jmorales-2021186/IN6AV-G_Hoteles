@@ -44,7 +44,11 @@ exports.checkUpdate = (data)=>{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**asdf */
 =======
 /**asasdfasdfdf */
 >>>>>>> jmorales
+=======
+/**asasdfasdfdf */
+>>>>>>> msicajan
