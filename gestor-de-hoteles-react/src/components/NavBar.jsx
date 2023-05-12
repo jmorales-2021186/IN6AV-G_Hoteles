@@ -23,7 +23,7 @@ export const NavBar = () => {
             <div className="" id="navbars-rs-food"/*  style={{ marginRight: '120px' }} */>
               <ul className="navbar-nav ml-auto " /* style={{ marginLeft: '10px' }} */>
                 <li className="nav-item active"><Link to='/' className="nav-link" >Home</Link></li>
-                <li className="nav-item"><Link className="nav-link" >Menu</Link></li>
+                <li className="nav-item"><Link to='/hoteles' className="nav-link" >Hoteles</Link></li>
                 <li className="nav-item"><Link className="nav-link" >About</Link></li>
                 <li className="nav-item dropdown">
                   <Link className="nav-link " id="dropdown-a" data-toggle="dropdown">Pages</Link>

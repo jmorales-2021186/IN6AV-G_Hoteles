@@ -86,3 +86,11 @@
 .login-block button:hover {
     background: #ff7b81;
 }
+
+
+
+.login-block .button-link .button-register{
+    width: 50%;
+    margin-left: 65px;
+    margin-top: 10px;
+}

@@ -2,12 +2,12 @@ import React, { useState, useContext } from 'react'
 import './login.css'
 import { NavBar } from '../../components/NavBar'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { NombreContexto } from '../../index'
 
 export const LoginPage = () => {
 
-  const {setLoggedIn, setDataUser} = useContext(NombreContexto)
+  const { setLoggedIn, setDataUser } = useContext(NombreContexto)
 
   const navigate = useNavigate()
   const [log, setLog] = useState({
@@ -50,6 +50,10 @@ export const LoginPage = () => {
         <input onChange={handleChange} name='username' type="text" placeholder="Username" id="username" />
         <input onChange={handleChange} name='password' type="password" placeholder="Password" id="password" />
         <button onClick={() => login()}>Iniciar</button>
+        <Link to='/register' className='button-link' >
+          <button className='button-register'>Registrarme</button>
+        </Link>
+
       </div>
     </>
   )

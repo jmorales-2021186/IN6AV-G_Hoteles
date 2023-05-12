@@ -87,6 +87,7 @@ exports.save = async(req, res)=>{
         let validate = validateData(params);
         if(validate) return res.status(400).send(validate);
         //Role predefinido
+        if(data.role !== null) return res.status(403).send({message: 'No puedes agregar un rol'})
         data.role = 'ADMIN_HOTEL';
         //Encriptar contraseña
         data.password = await encrypt(data.password)

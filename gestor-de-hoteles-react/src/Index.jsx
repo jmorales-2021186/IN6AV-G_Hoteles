@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { HotelesPage } from './pages/Hoteles/HotelesPage'
 
 
 export const NombreContexto = createContext()
@@ -36,6 +37,10 @@ export const Index = () => {
                 {
                     path: '/register',
                     element: <RegisterPage/>
+                },
+                {
+                    path: '/hoteles',
+                    element: <HotelesPage/>
                 }
                 
             ]

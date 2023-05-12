@@ -38,9 +38,7 @@ export const HomePage = () => {
 
       
 
-      {/*  <div className='hola'>
-      <h1>Hoteles</h1>
-    </div> */}
+      
 
     </>
   )
