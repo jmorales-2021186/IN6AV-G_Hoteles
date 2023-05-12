@@ -13,10 +13,11 @@ const hotelSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    room:{type: mongoose.Schema.Types.ObjectId, ref: 'Room'},
+    room:[{type: mongoose.Schema.Types.ObjectId, ref: 'Room'}],
 
     admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
+<<<<<<< HEAD
     event: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
 
 =======
@@ -27,6 +28,8 @@ const hotelSchema = mongoose.Schema({
     admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     
 >>>>>>> msicajan
+=======
+>>>>>>> jmorales
    image:{
     type: String,
     required: false

@@ -77,7 +77,10 @@ exports.update = async(req, res)=>{
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**/aaaaaaaaaa */
 =======
 /**/
 >>>>>>> msicajan
+=======
+>>>>>>> jmorales
