@@ -3,8 +3,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { App } from './App'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
-import { LoginPage } from './pages/LoginPage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+
 
 export const NombreContexto = createContext()
 
@@ -41,7 +42,7 @@ export const Index = () => {
         }
     ])
     return (
-        <NombreContexto.Provider value={{ loggedIn, dataUser, setDataUser  }}>
+        <NombreContexto.Provider value={{ loggedIn,setLoggedIn, dataUser, setDataUser  }}>
             <RouterProvider router={routes} />
         </NombreContexto.Provider>
     )

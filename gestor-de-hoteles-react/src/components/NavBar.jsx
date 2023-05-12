@@ -3,26 +3,26 @@ import '../HomePage.css'
 import imagen from '../assets/logo.png'
 import user from '../assets/user.png'
 import { NombreContexto } from '../index'
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const NavBar = () => {
-  const { loggedIn } = useContext(NombreContexto)
+  const { loggedIn, setLoggedIn, setDataUser } = useContext(NombreContexto)
 
-  
+
 
   return (
     <>
       <header className="top-navbar" >
         <nav className="navbar navbar-expand-lg navbar-light bg-light" >
           <div className="" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link className="navbar-brand logo" >
+            <Link to='/' className="navbar-brand logo" >
               <img src={imagen} alt="" width={50} height={50} />
               <p>giov<span className='rojo'>any</span></p>
             </Link>
 
             <div className="" id="navbars-rs-food"/*  style={{ marginRight: '120px' }} */>
               <ul className="navbar-nav ml-auto " /* style={{ marginLeft: '10px' }} */>
-                <li className="nav-item active"><Link className="nav-link" >Home</Link></li>
+                <li className="nav-item active"><Link to='/' className="nav-link" >Home</Link></li>
                 <li className="nav-item"><Link className="nav-link" >Menu</Link></li>
                 <li className="nav-item"><Link className="nav-link" >About</Link></li>
                 <li className="nav-item dropdown">
@@ -47,7 +47,18 @@ export const NavBar = () => {
                         <>
                           <li><Link class="dropdown-item" >Action</Link></li>
                           <li><Link class="dropdown-item" >Another action</Link></li>
-                          <li><Link class="dropdown-item" >Something else here</Link></li>
+                          <li>
+                            <Link
+                              to='/'
+                              onClick={() => {
+                                localStorage.clear()
+                                setLoggedIn(false)
+                                setDataUser({})
+                              }}
+                              class="dropdown-item">
+                              Cerrar Sesion
+                            </Link>
+                          </li>
                         </>
                       ) : (
                         <>

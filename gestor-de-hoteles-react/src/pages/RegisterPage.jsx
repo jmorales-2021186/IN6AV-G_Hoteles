@@ -1,9 +1,12 @@
 import React from 'react'
 import { Form } from '../components/Form'
+import {NavBar} from '../components/NavBar'
 
 export const RegisterPage = () => {
     return (
         <>
+        <NavBar/>
+        <div className='contenedores'>
             <Form 
             parametro1={'name'}
             parametro2={'surname'}
@@ -14,6 +17,9 @@ export const RegisterPage = () => {
             where='user'
             url='register'
             /> 
+
+        </div>
+            
         </>
     )
 }
