@@ -18,9 +18,12 @@ exports.createReservation = async(req, res)=>{
         //Verifica que si la habitacion que va a reservar exista
         let existRoom = await Room.findOne({_id: data.room})
         if(!existRoom) return res.send({message: 'this room does not exist'})
+        if(existRoom.name == 'Default') return res.send({message: 'this room is not possible to book'})      
         //verifica que los servicion que va adquirir existen
         let existServ = await Services.findOne({_id: data.services})
-        if(!existServ) return res.send({message: 'this service does not exist'})      
+        if(!existServ) return res.send({message: 'this service does not exist'})  
+        //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
+        if(data.endingDate >= data.starDtate) return res.send({message: 'this service does not exist'}) 
         //actualiza el status a false al reservar
         let updateRoom = await Room.findOneAndUpdate(
             {_id: existRoom._id},
@@ -64,15 +67,24 @@ exports.getReservation = async(req, res)=>{
     }
 }
 
-exports.deleteReservation = async(req, res)=>{
+exports.deleteReservation = async(req, res)=>{ //Esta funcion Cancela la reservacion del usuario
     try{
-        let typeId = req.params.id
-        let deleteType = await Type.findOneAndDelete({_id: typeId})
-        if(!deleteType) return res.status(404).send({message: ' event deleted successfully', deleteType})
+        let reservationId = req.params.id
+        let existeReservation = await Reservation.findOne({_id: reservationId})
+        let existRoom = await Room.findOne({_id: existeReservation.room})
+        if(existeReservation.room == existRoom._id) return res.send({message: 'this room does not exist'})
+        let updateRoom = await Room.findOneAndUpdate(
+            {_id: existRoom._id},
+            {status: true},
+            {new: true}
+            ) 
+        if(!updateRoom) return res.status(404).send({message:'Error al cambiar status'});
+        let deleteReservation = await Reservation.findOneAndDelete({_id: reservationId})
+        if(!deleteReservation) return res.send({message: 'this reservation could not be deleted'});
+        return res.send({message: `canceled reservation`});
     }catch(err){
         console.error(err)
-        return res.status(500).send({message: 'Error deleting Event Type'})
+        return res.status(500).send({message: 'Error deleting Reservation'})
     }
 }
 
-/** aaaaaaaaaaaaaaaaaaaa*/

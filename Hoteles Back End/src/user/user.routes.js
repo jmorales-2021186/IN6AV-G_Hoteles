@@ -25,7 +25,7 @@ api.post('/save', userController.save);
 
 
 //Funcion para ver todos los usurios registrados
-api.get('/seeUsers', userController.seeRegisteredUsers)
+api.get('/seeUsers', userController.seeRegisteredUsersClient)
 
 module.exports = api;
 

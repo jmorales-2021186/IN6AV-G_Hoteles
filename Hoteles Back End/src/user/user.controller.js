@@ -38,9 +38,9 @@ exports.userDefault = async()=>{
     }
 }
 
-//El administrador puede ver todos los usuariosregistrados//
+//El administrador puede ver todos los usuarios registrados con rol cliente//
 
-exports.seeRegisteredUsers = async(req, res)=>{
+exports.seeRegisteredUsersClient = async(req, res)=>{
     try{
         let userGet = await User.find({role: 'CLIENT'})
         return res.send({message: 'Todos los usuarios registrados :', userGet});
@@ -50,7 +50,19 @@ exports.seeRegisteredUsers = async(req, res)=>{
     }
 }
 
+//El administrador puede ver todos los usuarios registrados con rol ADMIN_HOTEL//
 
+exports.seeRegisteredUsersAdmin = async(req, res)=>{
+    try{
+        let userGet = await User.find({role: 'ADMIN_HOTEL'})
+        return res.send({message: 'Todos los usuarios registrados:', userGet});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting product'});
+    }
+}
+
+//=========================== FUNCIONES SOLO DE CLIENTE ================================
 
 //Registro Unicamente para Cliente se le agrega rol CLIENT por defecto no se puede cambiar
 exports.register = async(req, res)=>{
@@ -63,7 +75,7 @@ exports.register = async(req, res)=>{
         let validate = validateData(params);
         if(validate) return res.status(400).send(validate);
         //Role predefinido
-        data.role = 'CLIENT';
+        data.role = "CLIENT";
         //Encriptar contraseña
         data.password = await encrypt(data.password)
         //Guardar la información
@@ -75,6 +87,35 @@ exports.register = async(req, res)=>{
         return res.status(500).send({message: 'Error creating account', error: err.message})
     }
 }
+
+// El usuario puede buscar el hotel y realizar la reservación.
+
+exports.searchHotelAndVook = async(req, res)=>{
+    try{
+        let data = req.body;
+        let userGet = await User.findOne({name: data.name})
+
+
+        return res.send({message: 'Todos los usuarios registrados:', userGet});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error getting product'});
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Registro Unicamente para un ADMINISTRADOR DE UN HOTEL con rol ADMIN_HOTEL por defecto no se puede cambiar
 exports.save = async(req, res)=>{

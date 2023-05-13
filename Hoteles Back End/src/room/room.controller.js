@@ -4,6 +4,25 @@ const Room = require('./room.model')
 const fs = require('fs')
 const path = require('path')
 
+exports.addRoomDefault = async(req, res)=>{
+    try {
+        let data = {
+            name: 'Default',
+            size: '-------',
+            capacity: 0,
+            price: 0,
+            image: "",
+            status: false
+        }
+        let room = new Room(data)
+        let existRoom = await Room.findOne({name: data.name})
+        if(!existRoom) await room.save()
+    }
+     catch (err) { 
+        console.error(err)
+        console.log({message: 'Error creating Room'})
+    }
+}
 
 exports.addRoom = async(req, res)=>{
     try {
@@ -13,6 +32,7 @@ exports.addRoom = async(req, res)=>{
             return res.send({message: 'Room alredy created'})
         }
         data.status = true;
+        data.image = "";
         let room = new Room(data)
         await room.save()
         return res.send({mmesage: 'Room saved succesfully'})

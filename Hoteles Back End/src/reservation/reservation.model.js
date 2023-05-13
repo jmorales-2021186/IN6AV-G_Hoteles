@@ -19,8 +19,12 @@ const reservationSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    days:{
-        type:Number,
+    starDtate:{
+        type: Date,
+        required: true
+    },
+    endingDate:{
+        type: Date,
         required: true
     }
 })
