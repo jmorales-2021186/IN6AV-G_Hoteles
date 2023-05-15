@@ -13,7 +13,15 @@ exports.addHotel = async(req, res)=>{
         let existHotel = await Hotel.findOne({name: data.name})
         if(existHotel){
             return res.send({message: 'Hotel alredy created '})
+            
         }
+        let checkAdminHotel = await User.findOne({_id: data.admin})
+        if(checkAdminHotel.role !== 'ADMIN_HOTEL') return res.send({message: 'Can not add this user'})
+        let AddRoomDafault = await Room.findOne({name: 'Default'})
+        data.room = AddRoomDafault._id;
+        let AddEventDafault = await Event.findOne({name: 'Ninguno'})
+        data.event = AddEventDafault._id;
+    
         let hotel = new Hotel(data)
         await hotel.save()
         return res.send({message: 'Hotel saved succesfully'})
@@ -108,28 +116,5 @@ exports.deleteHotel = async(req, res)=>{
     }
 }
 
-exports.addRooms = async(req, res)=>{
-    try{
-        let hotelId = req.params.id
-        let data = req.body;
-        let existHotel = await Hotel.findOne({_id: hotelId})
-        if(!existHotel) return res.status(404).send({message: 'this hotel does not exist'})
-        let Room = existHotel.room;
-                //Verificar que no se repitan las habitaciones
-                for(let i=0; i<=Room.length; i++){
-                    if(Room[i] == data.room) return res.send({message: 'You have already added this product to the cart'});
-                }
-        let addRoom = await Hotel.findOneAndUpdate(
-            {_id: hotelId},
-            {$push:{
-            room: data.room
-            }},
-            {new: true}
-        )
-        return res.send({message: 'Your product has been added', addRoom})
-    }catch(err){
-        console.error(err)
-        return res.status(500).send({message: 'error adding rooms'})
-    }
-}
+
 

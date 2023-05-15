@@ -12,7 +12,6 @@ api.post('/add', hotelController.addHotel)
 api.get('/get', hotelController.getHotels)
 api.get('/get/:id', hotelController.getHotel)
 api.delete('/delete/:id', hotelController.deleteHotel)
-api.put('/addRoom/:id', hotelController.addRooms)
 
 module.exports = api;
 

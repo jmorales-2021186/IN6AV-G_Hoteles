@@ -2,6 +2,21 @@
 
 const Type = require('./type.model')
 
+exports.addTypeEventDefaul = async(req, res)=>{
+    try{
+      
+        let data = {
+            name: 'Ninguno',
+            description: 'Ninguno',
+        }
+        let type = new Type(data)
+        let existSer = await Type.findOne({name: data.name})
+        if(!existSer) await type.save()
+    }catch(err){
+        console.log(err)
+    }
+}
+
 exports.addTypeEvent = async(req, res)=>{
     try{
         let data = req.body;
