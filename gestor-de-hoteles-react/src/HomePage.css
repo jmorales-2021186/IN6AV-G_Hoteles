@@ -147,11 +147,8 @@ button:focus {
   position: relative;
   z-index: 10;
   padding: 0.1px;
-<<<<<<< HEAD
   background-color: rga(236, 47, 63);
 
-=======
->>>>>>> msicajan
 }
 
 .top-navbar .navbar {
@@ -165,13 +162,10 @@ button:focus {
 
 }
 
-<<<<<<< HEAD
 .top-navbar .navbar-nav{
   margin-left: 100px;
 }
 
-=======
->>>>>>> msicajan
 .top-navbar .navbar-light .navbar-nav .nav-link {
   color: #010101;
   font-size: 18px;
@@ -181,7 +175,6 @@ button:focus {
 }
 
 .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover {
-<<<<<<< HEAD
   background: rgba(238, 44, 60, .8);
   color: #ffffff;
 }
@@ -192,18 +185,6 @@ button:focus {
   border-radius: 4px;
 }
  */
-=======
-  background: #d0a772;
-  color: #ffffff;
-}
-
-.top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link {
-  background: #d0a772;
-  color: #ffffff;
-  border-radius: 4px;
-}
-
->>>>>>> msicajan
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   border: none;
   box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.5);
@@ -292,25 +273,16 @@ button:focus {
   color: #fff;
   background-color: transparent;
   background-image: none;
-<<<<<<< HEAD
   border-color: white;
   transition: all 300ms;
-=======
-  border-color: #cfa671;
->>>>>>> msicajan
 }
 
 .btn-outline-new-white:hover {
   color: #ffffff;
-<<<<<<< HEAD
   background: rgba(238, 44, 60, .8);
   border-color: rgba(218, 9, 27, 0.8);
   transform: scale(1.1);
 
-=======
-  background-color: #cfa671;
-  border-color: #cfa671;
->>>>>>> msicajan
 }
 
 .overlay-background {
@@ -1519,7 +1491,6 @@ blockquote {
   border: solid 2px #b69365;
 }
 
-<<<<<<< HEAD
 /* 
 .hola{
   width: 100%;
@@ -1528,5 +1499,3 @@ blockquote {
   border-radius: 600px 100px 500px 200px;
   margin-top: 20px;
 } */
-=======
->>>>>>> msicajan

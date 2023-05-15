@@ -4,22 +4,24 @@ const Room = require('./room.model')
 const fs = require('fs')
 const path = require('path')
 
-
-exports.addRoom = async(req, res)=>{
+exports.addRoomDefault = async(req, res)=>{
     try {
-        let data = req.body;
-        let existRoom = await Room.findOne({name: data.name})
-        if(existRoom){
-            return res.send({message: 'Room alredy created'})
+        let data = {
+            name: 'Default',
+            size: '-------',
+            capacity: 0,
+            price: 0,
+            image: "",
+            status: false
         }
         data.status = true;
         let room = new Room(data)
-        await room.save()
-        return res.send({mmesage: 'Room saved succesfully'})
+        let existRoom = await Room.findOne({name: data.name})
+        if(!existRoom) await room.save()
     }
      catch (err) { 
         console.error(err)
-        return res.status(500).send({message: 'Error creating Room'})
+        console.log({message: 'Error creating Room'})
     }
 }
 

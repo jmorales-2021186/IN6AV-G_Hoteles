@@ -3,6 +3,23 @@
 const Type = require('../eventType/type.model')
 const Event = require('./event.model')
 
+exports.addEventEventDefaul = async(req, res)=>{
+    try{
+        let typeId = await Type.findOne({name: 'Ninguno'})
+        let data = {
+            name: 'Ninguno',
+            date: new Date(),
+            price: 0,
+            type: typeId._id,
+        }
+        let event = new Event(data)
+        let existSer = await Event.findOne({name: data.name})
+        if(!existSer) await event.save()
+    }catch(err){
+        console.log(err)
+    }
+}
+
 exports.addEvent = async(req, res)=>{
     try{
         let data = req.body;
