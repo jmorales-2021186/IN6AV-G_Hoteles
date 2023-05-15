@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-/** */
-=======
-=======
->>>>>>> msicajan
 'use strict'
 
 const express = require('express')
