@@ -203,10 +203,6 @@ exports.save = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
-
-
-=======
 //Funcion de agregar habitaciones a un hotel
 
 exports.addRooms = async(req, res)=>{
@@ -242,7 +238,6 @@ exports.addRooms = async(req, res)=>{
 }
 
 //====================================FUNCIONES GENERALES================================
->>>>>>> jmorales
 //Funcion para todos los usarios 
 
 exports.login = async(req, res)=>{

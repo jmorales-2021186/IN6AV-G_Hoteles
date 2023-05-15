@@ -14,7 +14,6 @@ exports.addRoomDefault = async(req, res)=>{
             image: "",
             status: false
         }
-        data.status = true;
         let room = new Room(data)
         let existRoom = await Room.findOne({name: data.name})
         if(!existRoom) await room.save()
@@ -25,12 +24,6 @@ exports.addRoomDefault = async(req, res)=>{
     }
 }
 
-
-exports.getTypes = async(req, res)=>{
-
-exports.getRooms = async (req, res)=>{
->>>>>>> jmorales
-
 exports.getRooms = async (req, res)=>{
     try {
         let rooms = await Room.find()
@@ -40,14 +33,6 @@ exports.getRooms = async (req, res)=>{
             return res.status(500).send({message: 'Eroror getting Rooms'})
     }
 }
-
-
-exports.getType = async(req, res)=>{
-    try{
-        let roomId = req.params.id
-        let room = await Room.findOne({_id: roomId})
-        if(!room) return res.status(500).send({message:'Error gettign Rooms'})
-
 
 exports.getRoom = async(req, res)=>{
     try{

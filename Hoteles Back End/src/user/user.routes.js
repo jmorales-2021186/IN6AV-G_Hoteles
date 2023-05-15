@@ -27,15 +27,9 @@ api.get('/seeUsers', userController.seeRegisteredUsersClient)
 //Funcion para ver todos los usurios registrados ROL ADMIN_HOTEL
 api.get('/seeUsersAdmin', userController.seeRegisteredUsersAdminHotel)
 
-<<<<<<< HEAD
-
-//Funcion para ver todos los usurios registrados
-api.get('/seeUsers', userController.seeRegisteredUsers)
-=======
 //===============================================Rutas solo de Admin_HOTEL=================
 //Agregar habitaciones a un hotel
 api.put('/addHotles/:id', userController.addRooms)
->>>>>>> jmorales
 
 module.exports = api;
 
