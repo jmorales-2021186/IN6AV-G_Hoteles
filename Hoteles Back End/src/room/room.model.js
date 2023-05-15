@@ -19,9 +19,9 @@ const roomSchema = mongoose.Schema({
         type: String,
         required: true
     },
-        image: {
-            type: String,
-            required: false
+    image: {
+          type: String,
+          required: true
     },
     status:{
         type: Boolean,
