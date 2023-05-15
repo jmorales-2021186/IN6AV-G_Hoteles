@@ -1,0 +1,7 @@
+s
+
+<<<<<<< HEAD
+/**/asdf
+=======
+/**/asdfasdfasdf
+>>>>>>> jmorales
