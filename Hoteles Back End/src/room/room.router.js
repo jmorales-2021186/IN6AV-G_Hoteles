@@ -6,7 +6,6 @@ const roomController = require('./room.controller')
 const connectMultiparty = require('connect-multiparty')
 const upload = connectMultiparty({uploadDir: './uploads/users'})
 
-api.post('/add', roomController.addRoom)
 api.get('/get', roomController.getRooms)
 api.get('/get/:id', roomController.getRooms)
 api.put('/uploadImage/:id', upload, roomController.addImage)

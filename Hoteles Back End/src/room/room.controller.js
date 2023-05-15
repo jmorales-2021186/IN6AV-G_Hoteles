@@ -24,25 +24,6 @@ exports.addRoomDefault = async(req, res)=>{
     }
 }
 
-exports.addRoom = async(req, res)=>{
-    try {
-        let data = req.body;
-        let existRoom = await Room.findOne({name: data.name})
-        if(existRoom){
-            return res.send({message: 'Room alredy created'})
-        }
-        data.status = true;
-        data.image = "";
-        let room = new Room(data)
-        await room.save()
-        return res.send({mmesage: 'Room saved succesfully'})
-    }
-     catch (err) { 
-        console.error(err)
-        return res.status(500).send({message: 'Error creating Room'})
-    }
-}
-
 exports.getRooms = async (req, res)=>{
     try {
         let rooms = await Room.find()

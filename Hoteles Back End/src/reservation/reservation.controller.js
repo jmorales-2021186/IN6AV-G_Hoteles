@@ -23,7 +23,8 @@ exports.createReservation = async(req, res)=>{
         let existServ = await Services.findOne({_id: data.services})
         if(!existServ) return res.send({message: 'this service does not exist'})  
         //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
-        if(data.endingDate >= data.starDtate) return res.send({message: 'this service does not exist'}) 
+
+        if(data.endingDate <= data.starDtate) return res.send({message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio'}) 
         //actualiza el status a false al reservar
         let updateRoom = await Room.findOneAndUpdate(
             {_id: existRoom._id},
@@ -34,6 +35,7 @@ exports.createReservation = async(req, res)=>{
         //verificar que si el estado el falso no se pueda reservar
         if(existRoom.status == false) return res.status(404).send({message:'This room cannot be reserved'});
         //Guardar Reser
+        data.total = 0;
         let reservation = new Reservation(data)
         await reservation.save()
         return res.send({mmesage: 'Reservation saved succesfully'})

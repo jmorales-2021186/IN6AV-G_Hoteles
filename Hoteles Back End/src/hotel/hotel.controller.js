@@ -20,7 +20,8 @@ exports.addHotel = async(req, res)=>{
         let AddRoomDafault = await Room.findOne({name: 'Default'})
         data.room = AddRoomDafault._id;
         let AddEventDafault = await Event.findOne({name: 'Ninguno'})
-        data.event = AddEventDafault._id;S
+        data.event = AddEventDafault._id;
+    
         let hotel = new Hotel(data)
         await hotel.save()
         return res.send({message: 'Hotel saved succesfully'})
@@ -115,27 +116,5 @@ exports.deleteHotel = async(req, res)=>{
     }
 }
 
-exports.addRooms = async(req, res)=>{
-    try{
-        let hotelId = req.params.id
-        let data = req.body;
-        let existHotel = await Hotel.findOne({_id: hotelId})
-        if(!existHotel) return res.status(404).send({message: 'this hotel does not exist'})
-        let Room = existHotel.room;
-                for(let i=0; i<=Room.length; i++){
-                    if(Room[i] == data.room) return res.send({message: 'You'});
-                }
-        let addRoom = await Hotel.findOneAndUpdate(
-            {_id: hotelId},
-            {$push:{
-            room: data.room
-            }},
-            {new: true}
-        )
-        return res.send({message: 'Your product has been added', addRoom})
-    }catch(err){
-        console.error(err)
-        return res.status(500).send({message: 'error adding rooms'})
-    }
-}
+
 
