@@ -141,7 +141,33 @@ button:focus {
   HEADER
 -------------------------------------------------------------------*/
 
+.logo{
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: 'Unbounded', cursive;
+  cursor: pointer;
+}
 
+.logo p{
+  margin: 0;
+}
+
+.logo img{
+  margin-top: -5px;
+}
+
+.logo .rojo{
+  color: rgba(238, 44, 60, .8);
+}
+
+.user{
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
+  border: 1px solid black;
+}
 
 .top-navbar {
   position: relative;
@@ -191,7 +217,7 @@ button:focus {
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item:hover {
-  background: #d0a772;
+  background: rgba(238, 44, 60, .8);
   color: #ffffff;
 }
 
@@ -439,6 +465,8 @@ button:focus {
 }
 
 .gallery-single {
+  width: 300px;
+  min-height: 300px;
   position: relative;
   overflow: hidden;
   -webkit-box-shadow: 0 0 10px #ccc;
@@ -451,7 +479,7 @@ button:focus {
   bottom: -100%;
   right: 0;
   height: 100%;
-  background: rgba(207, 166, 113, 0.9);
+  background: rgba(223, 90, 96, 0.9);
   padding: 12px 12px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
@@ -1461,7 +1489,7 @@ blockquote {
 
 /*********************************************************** HOME PAGE ********************************************************/
 .hero{
-  margin-top: 93px;
+  margin-top: 85px;
   width: 100%;
   height: 87.5vh;
   background-image:  linear-gradient(
@@ -1499,3 +1527,25 @@ blockquote {
   border-radius: 600px 100px 500px 200px;
   margin-top: 20px;
 } */
+
+
+
+.contenedores{
+  width: 500px;
+  margin: auto;
+  margin-top: 100px;
+}
+
+
+/*****************************************************************************************************************/
+
+/*************************************************HOTELES*********************************************************/
+
+
+.display-hoteles{
+  max-width: 80%;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
