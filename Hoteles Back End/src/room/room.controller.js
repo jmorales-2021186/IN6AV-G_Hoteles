@@ -27,7 +27,7 @@ exports.addRoom = async(req, res)=>{
 exports.getTypes = async(req, res)=>{
 
 exports.getRooms = async (req, res)=>{
->>>>>>> jmorales
+
 
 exports.getRooms = async (req, res)=>{
     try {
