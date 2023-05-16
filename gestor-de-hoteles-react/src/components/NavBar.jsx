@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import "../HomePage.css";
 import imagen from "../assets/logo.png";
 import user from "../assets/user.png";
-import { NombreContexto } from "../index";
+import { NombreContexto } from "../Index";
 import { Link, useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-  const { loggedIn, setLoggedIn, setDataUser } = useContext(NombreContexto);
+  const { loggedIn, setLoggedIn, setDataUser, dataUser } =
+    useContext(NombreContexto);
 
   return (
     <>
@@ -31,13 +32,8 @@ export const NavBar = () => {
               </p>
             </Link>
 
-            <div
-              className=""
-              id="navbars-rs-food" /*  style={{ marginRight: '120px' }} */
-            >
-              <ul
-                className="navbar-nav ml-auto " /* style={{ marginLeft: '10px' }} */
-              >
+            <div className="" id="navbars-rs-food">
+              <ul className="navbar-nav ml-auto ">
                 <li className="nav-item active">
                   <Link to="/" className="nav-link">
                     Home
@@ -65,7 +61,6 @@ export const NavBar = () => {
                     className="nav-link "
                     id="dropdown-a"
                     data-toggle="dropdown"
-                    to="/Test"
                   >
                     Blog
                   </Link>
