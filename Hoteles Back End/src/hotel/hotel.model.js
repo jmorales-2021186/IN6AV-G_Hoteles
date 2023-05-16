@@ -18,7 +18,11 @@ const hotelSchema = mongoose.Schema({
     admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
     event: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
-
+    
+    description:{
+        type: String,
+        required:true
+    },
     image:{
         type: String,
         required: false

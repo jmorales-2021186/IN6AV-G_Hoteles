@@ -1,16 +1,16 @@
 import React from 'react'
+import image from '../../assets/header.jpg'
 
-export const ListarHoteles = ({name, address, }) => {
+export const ListarHoteles = ({name, address }) => {
   return (
     <>
-      <div class="col-lg-4 col-md-6 special-grid drinks" >
-        <div class="gallery-single fix" >
-          <img src="" class="img-fluid" alt="Image"/>
-            <div class="why-text">
+      <div className="col-lg-4 col-md-6 special-grid drinks" >
+        <div className="gallery-single fix" >
+          <img src={image} className="img-fluid" alt="Image" style={{height: '300px'}}/>
+            <div className="why-text">
               <h4>{name}</h4>
-              <h4>{address}</h4>
-              <p>Este es un hotels de prueba prueba y mas pruebas</p>
-              <button>Mas info</button>
+              <p>{address}</p>
+              <button style={{width:'50%', margin:'auto'}}>Mas info</button>
             </div>
         </div>
       </div>

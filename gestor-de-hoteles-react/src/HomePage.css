@@ -1531,9 +1531,9 @@ blockquote {
 
 
 .contenedores{
-  width: 500px;
+  max-width: 500px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 160px;
 }
 
 
@@ -1543,9 +1543,16 @@ blockquote {
 
 
 .display-hoteles{
-  max-width: 80%;
+  width: 90%;
   margin: auto;
-  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
+}
+
+
+/* Clase que contiene a todas las demas */
+
+.centrar{
+  max-width: 1400px;
+  margin: auto;
 }

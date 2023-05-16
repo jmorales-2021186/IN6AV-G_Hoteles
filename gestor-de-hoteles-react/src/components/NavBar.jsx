@@ -13,7 +13,7 @@ export const NavBar = () => {
   return (
     <>
       <header className="top-navbar" >
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ border:'1px solid #ccc'}}>
           <div className="" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Link to='/' className="navbar-brand logo" >
               <img src={imagen} alt="" width={50} height={50} />
@@ -37,16 +37,16 @@ export const NavBar = () => {
             <div style={{ marginRight: '120px' }}>
               <ul className="navbar-nav ml-auto">
 
-                <li class="nav-item dropdown">
-                  <Link class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li className="nav-item dropdown">
+                  <Link className="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src={user} alt="" className='user' />
                   </Link>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                     {
                       loggedIn === true ? (
                         <>
-                          <li><Link class="dropdown-item" >Action</Link></li>
-                          <li><Link class="dropdown-item" >Another action</Link></li>
+                          <li><Link className="dropdown-item" >Action</Link></li>
+                          <li><Link className="dropdown-item" >Another action</Link></li>
                           <li>
                             <Link
                               to='/'
@@ -55,15 +55,15 @@ export const NavBar = () => {
                                 setLoggedIn(false)
                                 setDataUser({})
                               }}
-                              class="dropdown-item">
+                              className="dropdown-item">
                               Cerrar Sesion
                             </Link>
                           </li>
                         </>
                       ) : (
                         <>
-                          <li><Link to='/register' class="dropdown-item" >Registrarme</Link></li>
-                          <li><Link to='/login' class="dropdown-item" >Iniciar Sesion</Link></li>
+                          <li><Link to='/register' className="dropdown-item" >Registrarme</Link></li>
+                          <li><Link to='/login' className="dropdown-item" >Iniciar Sesion</Link></li>
                         </>
                       )
                     }

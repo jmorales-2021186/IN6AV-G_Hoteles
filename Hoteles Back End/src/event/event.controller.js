@@ -25,10 +25,9 @@ exports.addEvent = async(req, res)=>{
         let data = req.body;
         let existType = await Type.findOne({_id: data.type})
         if(!existType) return res.status(404).send({message: 'Type Event not found'})
-        let duplicateType = await Type.findOne({name: data.name})
-        if(!duplicateType){
-            return res.send({message: ' Event alredy created'})
-        }
+        //Busqueda de que no se repita el nombre del evento
+        let duplicateType = await Event.findOne({name: data.name})
+        if(duplicateType) return res.send({message: ' Event alredy created'})
         let event = new Event(data)
         await event.save()
         return res.send({message: 'Event saved sucessfully', event})
