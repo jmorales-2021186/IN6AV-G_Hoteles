@@ -1,14 +1,13 @@
 .login-lg {
-    width: 213px;
-    height: 36px;
+    width: 100%;
+
     background: url('http://i.imgur.com/fd8Lcso.png') no-repeat;
-    margin: 30px auto;
-    margin-top: 200px;
+    margin-top: 14vh;
 }
 
 .login-block {
-    width: 320px;
-    padding: 20px;
+    width: 100%;
+    padding: 10vh 5vw;
     background: #fff;
     border-radius: 5px;
     border-top: 5px solid #ff656c;
@@ -17,7 +16,7 @@
     transition: all 300ms;
 }
 
-.login-block:hover{
+.login-block:hover {
     background-color: #f0dcdc;
 }
 
@@ -63,7 +62,8 @@
     background-size: 16px 80px;
 }
 
-.login-block input:active, .login-block input:focus {
+.login-block input:active,
+.login-block input:focus {
     border: 1px solid #ff656c;
 }
 
@@ -87,10 +87,33 @@
     background: #ff7b81;
 }
 
+.login-block .button-link {
+    text-align: center;
+}
 
-
-.login-block .button-link .button-register{
-    width: 50%;
-    margin-left: 65px;
+.login-block .button-link .button-register {
     margin-top: 10px;
+   
+}
+
+.button-register {
+ width: 20px;
+   
+}
+
+@media (max-width: 767px) {
+    .login-block {
+        padding: 10vh 5vw;
+    }
+
+    .login-block input,
+    .login-block button {
+        font-size: 12px;
+    }
+
+    .login-block .button-link .button-register {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
 }

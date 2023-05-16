@@ -16,6 +16,7 @@ export const NavBar = () => {
             className=""
             style={{
               width: "100%",
+              height: "vh",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",

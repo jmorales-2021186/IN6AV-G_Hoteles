@@ -140,9 +140,8 @@ button:focus {
 /*------------------------------------------------------------------
   HEADER
 -------------------------------------------------------------------*/
-
-.logo{
-  margin-left: 20px;
+.logo {
+  margin-left: 10px;
   display: flex;
   align-items: center;
   text-transform: uppercase;
@@ -150,21 +149,21 @@ button:focus {
   cursor: pointer;
 }
 
-.logo p{
+.logo p {
   margin: 0;
 }
 
-.logo img{
+.logo img {
   margin-top: -5px;
 }
 
-.logo .rojo{
+.logo .rojo {
   color: rgba(238, 44, 60, .8);
 }
 
-.user{
-  width: 25px;
-  height: 25px;
+.user {
+  width: 20px;
+  height: 20px;
   border-radius: 100px;
   border: 1px solid black;
 }
@@ -173,31 +172,28 @@ button:focus {
   position: relative;
   z-index: 10;
   padding: 0.1px;
-  background-color: rga(236, 47, 63);
-
+  background-color: rgba(236, 47, 63);
 }
 
 .top-navbar .navbar {
-  padding: 15px 0px;
+  padding: 3.2 vh 0px;
   position: fixed;
   width: 100%;
-  transition: height .3s ease-out, background .3s ease-out, box-shadow .3s ease-out;
+  transition: height 0.3s ease-out, background 0.3s ease-out, box-shadow 0.3s ease-out;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   z-index: 100;
-
 }
 
-.top-navbar .navbar-nav{
-  margin-left: 100px;
+.top-navbar .navbar-nav {
+  margin-left: 10px;
 }
 
 .top-navbar .navbar-light .navbar-nav .nav-link {
   color: #010101;
   font-size: 18px;
-  padding: 0px 20px;
+  padding: 0px 10px;
   border-radius: 4px;
-  
 }
 
 .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover {
@@ -205,12 +201,6 @@ button:focus {
   color: #ffffff;
 }
 
-/* .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link {
-  background: rgba(238, 44, 60, .8);
-  color: #ffffff;
-  border-radius: 4px;
-}
- */
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   border: none;
   box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.5);
@@ -224,6 +214,7 @@ button:focus {
 .navbar-light .navbar-toggler:hover {
   background: #cfa671;
 }
+
 
 /*------------------------------------------------------------------
   Slider
