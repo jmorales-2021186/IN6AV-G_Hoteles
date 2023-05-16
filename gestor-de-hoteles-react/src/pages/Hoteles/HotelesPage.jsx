@@ -7,7 +7,9 @@ export const HotelesPage = () => {
         <>
             <NavBar />
             <div className='display-hoteles'>
-                <ListarHoteles/>
+                <ListarHoteles
+                    name={'Buenos Aires'}
+                    address={'Buenos Aires Argentina'} />
             </div>
         </>
     )
