@@ -5,6 +5,7 @@ import "../HomePage.css";
 import header from "../assets/header.jpg";
 import { NombreContexto } from "../index";
 import { ModalPage } from "../components/ModalPage";
+import { SideBar } from "../components/Sidebar/SideBar";
 
 export const HomePage = () => {
   const { loggedIn } = useContext(NombreContexto);
