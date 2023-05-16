@@ -5,6 +5,7 @@ const Hotel = require('../hotel/hotel.model');
 const Room = require('../room/room.model');
 const Services = require('../AdittionalsHoteles/servicios.model');
 const Reservation = require('../reservation/reservation.model');
+const Event = require('../event/event.model');
 
 const { validateData, encrypt, checkPassword } = require('../utils/validate');
 const { createToken } = require('../services/jwt');
@@ -118,7 +119,22 @@ exports.searchHotelAndVook = async (req, res) => {
         if (!existUser) return res.send({ message: 'this user does not exist' })
         //va a buscar el hotel por nombre
         let data = req.body
+<<<<<<< HEAD
         let hotel = await Hotel.findOne({ name: data.name } || { address: data.address })
+=======
+        let hotel = await Hotel.findOne({
+            $or: [{
+                $and: [
+                    {name: data.name}
+                ]
+            },{
+                $and: [
+                    {address: data.address}
+                ] 
+            }
+            ]
+        })
+>>>>>>> jmorales
         if (!hotel) return res.status(500).send({ message: 'Hotel not Found ' })
         //encuentra el hotel y hace la reservacion    
         //verificar que el rol de usuario solo sera cliente
@@ -133,10 +149,17 @@ exports.searchHotelAndVook = async (req, res) => {
         //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
         if (data.endingDate <= data.starDtate) return res.send({ message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio' })
         //Verificar que la habitacion adquirir sea de ese hotel
+<<<<<<< HEAD
         let product = hotel.room;
         //Verificar que no se repitan los productos
         for (let i = 0; i <= product.length; i++) {
             if (product[i] == data.room) {
+=======
+        let rooms = hotel.room;
+        //Verificar que no se repitan los productos
+        for (let i = 0; i <= rooms.length; i++) {
+            if (rooms[i] == data.room) {
+>>>>>>> jmorales
                 //actualiza el status a false al reservar
                 let updateRoom = await Room.findOneAndUpdate(
                     { _id: existRoom._id },
@@ -160,17 +183,6 @@ exports.searchHotelAndVook = async (req, res) => {
         return res.status(500).send({ message: 'Error getting product' });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //================================ FUNCIONES UNICAMENTE PARA ADMINISTRADOS_HOTEL=====================
 
@@ -232,6 +244,35 @@ exports.addRooms = async(req, res)=>{
         return res.status(500).send({message: 'error adding rooms'})
     }
 }
+
+//agregar eventos a un hotel
+
+
+exports.addEvents = async(req, res)=>{
+    try{
+        //ID DEL ADMIN HOTEL
+        let userId = req.params.id
+        //VA A IR A BUSCAR EL ID QUE TENGA ESE HOTEL
+        let hotel = await Hotel.findOne({admin: userId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        //id del evento
+        let data = req.body;
+       // AGREGAR LA HABITCION AL HOTEL
+        let addEvent = await Hotel.findOneAndUpdate(
+            {_id: hotel._id},
+            {$push:{
+            event: data.event
+            }},
+            {new: true}
+        )
+        return res.send({message: 'Event saved succesfully', addEvent})
+     }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'error adding rooms'})
+    }
+}
+
+
 
 //====================================FUNCIONES GENERALES================================
 //Funcion para todos los usarios 

@@ -31,6 +31,10 @@ exports.addHotel = async(req, res)=>{
     }
 }
 
+//Puede ver los eventos de un hotel en especifico
+
+
+
 exports.getHotels = async(req, res)=>{
     try{
         let hotels = await Room.find();
@@ -40,6 +44,24 @@ exports.getHotels = async(req, res)=>{
         return res.status(500).send({message: 'Error getting Hotels'})
     }
 }
+
+//Puede visualizar las habitaciones por hotel.
+
+exports.getEventInHotel = async(req, res)=>{
+    try{
+        let hotelId = req.params.id
+        let hotel = await Hotel.findOne({_id: hotelId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        let events = hotel.event;
+        for (let i = 0; i <= events.length; i++) {
+            return res.send({message: `Los eventos son: ${events}`})
+        }
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error getting Hotel'})
+    }
+}
+
 
 exports.getHotel = async(req, res)=>{
     try{
@@ -115,6 +137,7 @@ exports.deleteHotel = async(req, res)=>{
         return res.status(500).send({message: 'Error deleting Hotel'})
     }
 }
+
 
 
 
