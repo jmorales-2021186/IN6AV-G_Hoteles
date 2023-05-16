@@ -10,7 +10,7 @@ export const ListarHoteles = ({name, address }) => {
             <div className="why-text">
               <h4>{name}</h4>
               <p>{address}</p>
-              <button style={{width:'50%', margin:'auto'}}>Mas info</button>
+              <button className='btn btn-dark' style={{width:'100%'}} >Mas info</button>
             </div>
         </div>
       </div>

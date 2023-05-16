@@ -4,41 +4,52 @@ import { NavBar } from '../components/NavBar'
 import '../HomePage.css'
 import header from '../assets/header.jpg'
 import { NombreContexto } from '../index'
-import {ModalPage} from '../components/ModalPage'
+import { ModalPage } from '../components/ModalPage'
+import { SideBar } from './DashBoard/SideBar'
 
 export const HomePage = () => {
 
-  const {loggedIn} = useContext(NombreContexto)
+  const { loggedIn, dataUser } = useContext(NombreContexto)
   const [modal, setModal] = useState(false)
 
 
   const login = async () => {
-    try{
+    try {
       setModal(true)
-    }catch(e){
+    } catch (e) {
       console.log(e);
     }
   }
 
   return (
     <>
+      <div style={{display: 'flex'}}>
 
-      <NavBar />
+        {
+          dataUser.role === 'ADMIN' ? (<>
+            <SideBar />
+          </>) : <NavBar />
 
-      <div className='hero'>
+        }
 
-        <div className='reservar'>
 
-        
-          <p><Link to={ loggedIn ? 'a' : '/login'} class="btn btn-lg btn-circle btn-outline-new-white" >Reservation</Link></p>
+
+        <div className='hero'>
+
+          <div className='reservar'>
+
+
+            <p><Link to={loggedIn ? 'a' : '/login'} class="btn btn-lg btn-circle btn-outline-new-white" >Reservation</Link></p>
+
+          </div>
 
         </div>
-
       </div>
 
-      
 
-      
+
+
+
 
     </>
   )

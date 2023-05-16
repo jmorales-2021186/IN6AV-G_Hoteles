@@ -147,6 +147,7 @@ button:focus {
   align-items: center;
   text-transform: uppercase;
   font-family: 'Unbounded', cursive;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -818,7 +819,7 @@ button:focus {
 
 .page-breadcrumb {
   padding: 250px 0 150px;
-  background: url(../images/all-bg.jpg) no-repeat;
+  background: linear-gradient(0deg, rgba(0,0,0,.5),rgba(0,0,0,.5)), url(./assets/h1.jpg) no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: 0 0;
@@ -830,7 +831,11 @@ button:focus {
   z-index: 2;
 }
 
-.all-page-title::before {
+.all-page-title .container h1{
+  font-size: 3vw;
+}
+
+/* .all-page-title::before {
   background: #010101;
   content: "";
   height: 100%;
@@ -840,7 +845,7 @@ button:focus {
   width: 100%;
   z-index: 1;
   opacity: 0.8;
-}
+} */
 
 .all-page-title h1 {
   font-size: 38px;
@@ -1489,9 +1494,8 @@ blockquote {
 
 /*********************************************************** HOME PAGE ********************************************************/
 .hero{
-  margin-top: 85px;
   width: 100%;
-  height: 87.5vh;
+  height: 100vh;
   background-image:  linear-gradient(
     0deg,
     rgba(0,0,0,.5),
@@ -1555,4 +1559,18 @@ blockquote {
 .centrar{
   max-width: 1400px;
   margin: auto;
+}
+
+
+
+
+#concted{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+#proyectos{
+  min-height: 1;
+  width:89%;
 }

@@ -6,31 +6,36 @@ import { NombreContexto } from '../index'
 import { Link, useNavigate } from 'react-router-dom'
 
 export const NavBar = () => {
-  const { loggedIn, setLoggedIn, setDataUser } = useContext(NombreContexto)
+  const { loggedIn, setLoggedIn, setDataUser, dataUser } = useContext(NombreContexto)
 
 
 
   return (
     <>
       <header className="top-navbar" >
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ border:'1px solid #ccc'}}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ border: '1px solid #ccc' }}>
           <div className="" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Link to='/' className="navbar-brand logo" >
               <img src={imagen} alt="" width={50} height={50} />
               <p>giov<span className='rojo'>any</span></p>
             </Link>
 
-            <div className="" id="navbars-rs-food"/*  style={{ marginRight: '120px' }} */>
-              <ul className="navbar-nav ml-auto " /* style={{ marginLeft: '10px' }} */>
-                <li className="nav-item active"><Link to='/' className="nav-link" >Home</Link></li>
-                <li className="nav-item"><Link to='/hoteles' className="nav-link" >Hoteles</Link></li>
-                <li className="nav-item"><Link className="nav-link" >About</Link></li>
+            <div className="" id="navbars-rs-food">
+              <ul className="navbar-nav ml-auto ">
+
+                <li className="nav-item active">
+                  <Link to='/' className="nav-link" >Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to='/hoteles' className="nav-link" >Hoteles</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" >About</Link></li>
                 <li className="nav-item dropdown">
                   <Link className="nav-link " id="dropdown-a" data-toggle="dropdown">Pages</Link>
                 </li>
-                <li className="nav-item dropdown">
-                  <Link className="nav-link " id="dropdown-a" data-toggle="dropdown">Blog</Link>
-                </li>
+
+                
 
               </ul>
             </div>
@@ -45,8 +50,6 @@ export const NavBar = () => {
                     {
                       loggedIn === true ? (
                         <>
-                          <li><Link className="dropdown-item" >Action</Link></li>
-                          <li><Link className="dropdown-item" >Another action</Link></li>
                           <li>
                             <Link
                               to='/'
