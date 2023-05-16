@@ -6,6 +6,7 @@ import { NotFoundPage } from './pages/NotFoundPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { HotelesPage } from './pages/Hoteles/HotelesPage'
+import { AddHotel } from './pages/Hoteles/AddHotel'
 
 
 export const NombreContexto = createContext()
@@ -16,7 +17,7 @@ export const Index = () => {
     const [dataUser, setDataUser] = useState({
         name: "",
         username: "",
-        role: "",
+        role: "ADMIN",
       });
     
 
@@ -41,6 +42,10 @@ export const Index = () => {
                 {
                     path: '/hoteles',
                     element: <HotelesPage/>
+                },
+                {
+                    path: '/addHotel',
+                    element: <AddHotel/>
                 }
                 
             ]

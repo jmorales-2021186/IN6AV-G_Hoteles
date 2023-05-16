@@ -11,12 +11,14 @@ export const NavBar = () => {
   return (
     <>
       <header className="top-navbar">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav
+          className="navbar navbar-expand-lg navbar-light bg-light"
+          style={{ border: "1px solid #ccc" }}
+        >
           <div
             className=""
             style={{
               width: "100%",
-              height: "vh",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -71,9 +73,9 @@ export const NavBar = () => {
             </div>
             <div style={{ marginRight: "120px" }}>
               <ul className="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <Link
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarScrollingDropdown"
                     role="button"
@@ -83,16 +85,16 @@ export const NavBar = () => {
                     <img src={user} alt="" className="user" />
                   </Link>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarScrollingDropdown"
                   >
                     {loggedIn === true ? (
                       <>
                         <li>
-                          <Link class="dropdown-item">Action</Link>
+                          <Link className="dropdown-item">Action</Link>
                         </li>
                         <li>
-                          <Link class="dropdown-item">Another action</Link>
+                          <Link className="dropdown-item">Another action</Link>
                         </li>
                         <li>
                           <Link
@@ -102,7 +104,7 @@ export const NavBar = () => {
                               setLoggedIn(false);
                               setDataUser({});
                             }}
-                            class="dropdown-item"
+                            className="dropdown-item"
                           >
                             Cerrar Sesion
                           </Link>
@@ -111,12 +113,12 @@ export const NavBar = () => {
                     ) : (
                       <>
                         <li>
-                          <Link to="/register" class="dropdown-item">
+                          <Link to="/register" className="dropdown-item">
                             Registrarme
                           </Link>
                         </li>
                         <li>
-                          <Link to="/login" class="dropdown-item">
+                          <Link to="/login" className="dropdown-item">
                             Iniciar Sesion
                           </Link>
                         </li>

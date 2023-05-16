@@ -33,7 +33,8 @@ exports.addHotel = async(req, res)=>{
 
 exports.getHotels = async(req, res)=>{
     try{
-        let hotels = await Room.find();
+        let hotels = await Hotel.find();
+        console.log('llego');
         return res.send({message: 'Hotels Found', hotels})
     }catch(err){
         console.error(err)
