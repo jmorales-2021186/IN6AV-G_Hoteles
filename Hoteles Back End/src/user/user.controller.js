@@ -109,59 +109,55 @@ exports.register = async(req, res)=>{
 
 // El usuario puede buscar el hotel y realizar la reservación.
 
-exports.searchHotelAndVook = async(req, res)=>{
-    try{
+exports.searchHotelAndVook = async (req, res) => {
+    try {
         let userId = req.params.id
         // let data = req.body;
         //verificar que el usario existe
-        let existUser = await User.findOne({_id: userId})
-        if(!existUser) return res.send({message: 'this user does not exist'})
+        let existUser = await User.findOne({ _id: userId })
+        if (!existUser) return res.send({ message: 'this user does not exist' })
         //va a buscar el hotel por nombre
         let data = req.body
-        let hotel = await Hotel.findOne({name: data.name} || {address: data.address })
-        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        let hotel = await Hotel.findOne({ name: data.name } || { address: data.address })
+        if (!hotel) return res.status(500).send({ message: 'Hotel not Found ' })
         //encuentra el hotel y hace la reservacion    
-          //verificar que el rol de usuario solo sera cliente
-          if(existUser.role !== 'CLIENT') return res.send({message: 'Register to reserve a room'}) //Si no es rol CLIENTE no puede reservar
-          //Verifica que si la habitacion que va a reservar exista
-          let existRoom = await Room.findOne({_id: data.room})
-          if(!existRoom) return res.send({message: 'this room does not exist'})
-          if(existRoom.name == 'Default') return res.send({message: 'this room is not possible to book'})      
-          //verifica que los servicion que va adquirir existen
-          let existServ = await Services.findOne({_id: data.services})
-          if(!existServ) return res.send({message: 'this service does not exist'})  
-          //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
-          if(data.endingDate <= data.starDtate) return res.send({message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio'}) 
-          //Verificar que la habitacion adquirir sea de ese hotel
-          let product = hotel.room;
-          //Verificar que no se repitan los productos
-          for (let i = 0; i <= product.length; i++) {
-              if(product[i] !== data.room) console.log('se queda aqui')
-               console.log(1)
-          }
-          console.log('avanzo hasta aca')
-          //actualiza el status a false al reservar
-          let updateRoom = await Room.findOneAndUpdate(
-              {_id: existRoom._id},
-              {status: false},
-              {new: true}
-              ) 
-          if(!updateRoom) return res.status(404).send({message:'Error al cambiar status'});
-          //verificar que si el estado el falso no se pueda reservar
-          if(existRoom.status == false) return res.status(404).send({message:'This room cannot be reserved'});
-          //Guardar Reser
-          data.total = 0;
-          let reservation = new Reservation(data)
-          await reservation.save()
-          return res.send({mmesage: 'Reservation saved succesfully'})
+        //verificar que el rol de usuario solo sera cliente
+        if (existUser.role !== 'CLIENT') return res.send({ message: 'Register to reserve a room' }) //Si no es rol CLIENTE no puede reservar
+        //Verifica que si la habitacion que va a reservar exista
+        let existRoom = await Room.findOne({ _id: data.room })
+        if (!existRoom) return res.send({ message: 'this room does not exist' })
+        if (existRoom.name == 'Default') return res.send({ message: 'this room is not possible to book' })
+        //verifica que los servicion que va adquirir existen
+        let existServ = await Services.findOne({ _id: data.services })
+        if (!existServ) return res.send({ message: 'this service does not exist' })
+        //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
+        if (data.endingDate <= data.starDtate) return res.send({ message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio' })
+        //Verificar que la habitacion adquirir sea de ese hotel
+        let product = hotel.room;
+        //Verificar que no se repitan los productos
+        for (let i = 0; i <= product.length; i++) {
+            if (product[i] == data.room) {
+                //actualiza el status a false al reservar
+                let updateRoom = await Room.findOneAndUpdate(
+                    { _id: existRoom._id },
+                    { status: false },
+                    { new: true }
+                )
+                if (!updateRoom) return res.status(404).send({ message: 'Error al cambiar status' });
+                //verificar que si el estado el falso no se pueda reservar
+                if (existRoom.status == false) return res.status(404).send({ message: 'This room cannot be reserved' });
+                //Guardar Reser
+                data.total = 0;
+                let reservation = new Reservation(data)
+                await reservation.save()
+                return res.send({ mmesage: 'Reservation saved succesfully' })
+            }
 
-
-
-
-        return res.send({message: 'Hotel Found ', hotel})
-    }catch(err){
+        }
+        return res.send({ mmesage: 'la habitacion no existe' })
+    } catch (err) {
         console.error(err);
-        return res.status(500).send({message: 'Error getting product'});
+        return res.status(500).send({ message: 'Error getting product' });
     }
 }
 
@@ -318,7 +314,6 @@ exports.addImage = async(req, res)=>{
         const fileName = fileSplit[2];
         const extension = fileName.split('\.'); 
         const fileExt = extension[1]
-        console.log(fileExt)
         if(
             fileExt == 'png' || 
             fileExt == 'jpg' || 

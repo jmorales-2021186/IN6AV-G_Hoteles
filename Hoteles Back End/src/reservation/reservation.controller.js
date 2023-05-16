@@ -5,9 +5,6 @@ const Room = require('../room/room.model')
 const Services = require('../AdittionalsHoteles/servicios.model')
 const User = require('../user/user.model')
 
-
-
-
 exports.getReservations = async(req, res)=>{
     try{
         let rese = await Reservation.find()
