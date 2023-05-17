@@ -5,6 +5,7 @@ const Hotel = require('../hotel/hotel.model');
 const Room = require('../room/room.model');
 const Services = require('../AdittionalsHoteles/servicios.model');
 const Reservation = require('../reservation/reservation.model');
+const Event = require('../event/event.model');
 
 const { validateData, encrypt, checkPassword } = require('../utils/validate');
 const { createToken } = require('../services/jwt');
@@ -12,6 +13,7 @@ const fs = require('fs')
 const path = require('path');
 const { response } = require('express');
 
+let cont = 0;
 
 //===============FUNCIONES UNICAMENTE DE ADMINISTRADOR==================//
 
@@ -33,6 +35,36 @@ exports.userDefault = async()=>{
         let addDefault;
         (existDefault) 
          ? ( console.log(`Admin ${data.name} creado por default`) )
+         :  (addDefault = new User(data),
+            await addDefault.save(),
+            console.log('Usuario ADMIN creado por Default'))
+
+
+    }catch(e){
+        console.error(e);
+        return res.status(500).send({message: 'Error server'})
+    }
+}
+
+
+//Usuario Admin Por defecto
+exports.userDefaultClient = async()=>{
+    try{
+        let data = {
+            name: '------',
+            surname: '-------',
+            username: '-------',
+            password: '-------',
+            email: '--------',
+            phone: '--------',
+            role: 'CLIENT',
+            image: ''
+        }
+        data.password = await encrypt(data.password)
+        let existDefault = await User.findOne({name: data.name});
+        let addDefault;
+        (existDefault) 
+         ? ( console.log(`user ${data.name} creado por default`) )
          :  (addDefault = new User(data),
             await addDefault.save(),
             console.log('Usuario ADMIN creado por Default'))
@@ -119,7 +151,18 @@ exports.searchHotelAndVook = async (req, res) => {
         if (!existUser) return res.send({ message: 'this user does not exist' })
         //va a buscar el hotel por nombre
         let data = req.body
-        let hotel = await Hotel.findOne({ name: data.name } || { address: data.address })
+        let hotel = await Hotel.findOne({
+            $or: [{
+                $and: [
+                    {name: data.name}
+                ]
+            },{
+                $and: [
+                    {address: data.address}
+                ] 
+            }
+            ]
+        })
         if (!hotel) return res.status(500).send({ message: 'Hotel not Found ' })
         //encuentra el hotel y hace la reservacion    
         //verificar que el rol de usuario solo sera cliente
@@ -134,10 +177,9 @@ exports.searchHotelAndVook = async (req, res) => {
         //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
         if (data.endingDate <= data.starDtate) return res.send({ message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio' })
         //Verificar que la habitacion adquirir sea de ese hotel
-        let product = hotel.room;
-        //Verificar que no se repitan los productos
-        for (let i = 0; i <= product.length; i++) {
-            if (product[i] == data.room) {
+        let rooms = hotel.room;
+        for (let i = 0; i <= rooms.length; i++) {
+            if (rooms[i] == data.room) {
                 //actualiza el status a false al reservar
                 let updateRoom = await Room.findOneAndUpdate(
                     { _id: existRoom._id },
@@ -150,7 +192,15 @@ exports.searchHotelAndVook = async (req, res) => {
                 //Guardar Reser
                 data.total = 0;
                 let reservation = new Reservation(data)
-                await reservation.save()
+                cont = cont + 1;
+                console.log(cont)
+                let contador = await Hotel.findOneAndUpdate(
+                    { _id: hotel._id },
+                    { NumReservations: cont},
+                    { new: true }
+                )
+                if (!contador) return res.status(404).send({ message: 'Error al sumar contador' });
+                await reservation.save();
                 return res.send({ mmesage: 'Reservation saved succesfully' })
             }
 
@@ -158,20 +208,9 @@ exports.searchHotelAndVook = async (req, res) => {
         return res.send({ mmesage: 'la habitacion no existe' })
     } catch (err) {
         console.error(err);
-        return res.status(500).send({ message: 'Error getting product' });
+        return res.status(500).send({ message: 'Error Reservating' });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //================================ FUNCIONES UNICAMENTE PARA ADMINISTRADOS_HOTEL=====================
 
@@ -187,7 +226,6 @@ exports.save = async(req, res)=>{
         let validate = validateData(params);
         if(validate) return res.status(400).send(validate);
         //Role predefinido
-        if(data.role) return res.status(403).send({message: 'You can not add a role'})
         data.role = 'ADMIN_HOTEL';
         //Encriptar contraseña
         data.password = await encrypt(data.password)
@@ -235,6 +273,7 @@ exports.addRooms = async(req, res)=>{
     }
 }
 
+<<<<<<< HEAD
 //====================================FUNCIONES GENERALES================================
 //Funcion para todos los usarios 
  exports.obtener = async(req, res)=>{
@@ -247,7 +286,94 @@ exports.addRooms = async(req, res)=>{
         return res.status(500).send({message: 'Error Server'})
     }
 }
+=======
+//agregar eventos a un hotel
+>>>>>>> 1e311eb331d2b5932f404e97cbd8c1506de43c75
 
+exports.addEvents = async(req, res)=>{
+    try{
+        //ID DEL ADMIN HOTEL
+        let userId = req.params.id
+        //VA A IR A BUSCAR EL ID QUE TENGA ESE HOTEL
+        let hotel = await Hotel.findOne({admin: userId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        //id del evento
+        let data = req.body;
+       // AGREGAR LA HABITCION AL HOTEL
+        let addEvent = await Hotel.findOneAndUpdate(
+            {_id: hotel._id},
+            {$push:{
+            event: data.event
+            }},
+            {new: true}
+        )
+        return res.send({message: 'Event saved succesfully', addEvent})
+     }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'error adding rooms'})
+    }
+}
+
+//Consultar todas las reservaciones hechas.
+
+exports.seeReservations = async(req, res)=>{
+    try{
+        let data = req.params.id
+        let hotel = await Hotel.findOne({
+            $or: [{
+                $and: [
+                    {name: data.name}
+                ]
+            },{
+                $and: [
+                    {address: data.address}
+                ] 
+            }
+            ]
+        })
+        console.log(hotel)
+        if (!hotel) return res.status(500).send({ message: 'Hotel not Found' })
+        return res.status(500).send({ message: 'Hotel Found', hotel })
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error Search Hotels'});
+    }
+}
+
+
+
+//====================================FUNCIONES GENERALES================================
+
+//Buscar un hotel en específico por su nombre o dirección
+
+exports.searchHotelbyNameorAdrress = async(req, res)=>{
+    try{
+        let data = req.body
+        let hotel = await Hotel.findOne({
+            $or: [{
+                $and: [
+                    {name: data.name}
+                ]
+            },{
+                $and: [
+                    {address: data.address}
+                ] 
+            }
+            ]
+        })
+        console.log(hotel)
+        if (!hotel) return res.status(500).send({ message: 'Hotel not Found' })
+        return res.status(500).send({ message: 'Hotel Found', hotel })
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error Search Hotels'});
+    }
+}
+
+
+
+
+//Login
 exports.login = async(req, res)=>{
     try{
         let data = req.body;
@@ -265,8 +391,7 @@ exports.login = async(req, res)=>{
             let token = await createToken(user)
             let userLogged = {
                 username: user.username,
-                name: user.name,
-                role: user.role
+                name: user.name
             }
             return res.send({message: 'User logged sucessfully', token, userLogged, });
         }
@@ -276,7 +401,6 @@ exports.login = async(req, res)=>{
         return res.status(500).send({message: 'Error, not logged'});
     }
 }
-
 
 
 exports.update = async(req, res)=>{
@@ -364,20 +488,3 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
-
-
-
-
-
-//Funcion de obtener users
-exports.getUsers = async(req, res)=>{
-    try{
-        const getUser = await User.find()
-        return res.send({message: getUser})
-    }catch(e){
-        return res.status(500).send({message: 'Server Error'})
-    }
-}
-
-
-

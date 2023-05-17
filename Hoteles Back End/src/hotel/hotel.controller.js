@@ -6,6 +6,7 @@ const Event = require('../event/event.model')
 const Hotel = require('./hotel.model')
 const fs = require('fs')
 const path = require('path')
+const reservationModel = require('../reservation/reservation.model')
 
 exports.addHotel = async(req, res)=>{
     try{
@@ -17,11 +18,19 @@ exports.addHotel = async(req, res)=>{
         }
         let checkAdminHotel = await User.findOne({_id: data.admin})
         if(checkAdminHotel.role !== 'ADMIN_HOTEL') return res.send({message: 'Can not add this user'})
+        //verificar que es admin no tanga ya un hotel asignado
+        let adminHotel = await Hotel.findOne({admin: data.admin})
+        if(adminHotel) return res.send({message: 'Debes agregar un administrador que no tenga ya un hotel'})
         let AddRoomDafault = await Room.findOne({name: 'Default'})
         data.room = AddRoomDafault._id;
         let AddEventDafault = await Event.findOne({name: 'Ninguno'})
         data.event = AddEventDafault._id;
-    
+        data.NumReservations = 0;
+        //Mandarle la reservacion por defecto 
+        let reservationDef = await User.findOne({name: '------'})
+        let reser = await reservationModel.findOne({user: reservationDef._id})
+        console.log(reser._id)
+        data.Reservationes = reser._id
         let hotel = new Hotel(data)
         await hotel.save()
         return res.send({message: 'Hotel saved succesfully'})
@@ -31,16 +40,37 @@ exports.addHotel = async(req, res)=>{
     }
 }
 
+//Puede ver los eventos de un hotel en especifico
+
+
+
 exports.getHotels = async(req, res)=>{
     try{
-        let hotels = await Hotel.find();
-        console.log('llego');
+        let hotels = await Room.find();
         return res.send({message: 'Hotels Found', hotels})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error getting Hotels'})
     }
 }
+
+//Puede visualizar las habitaciones por hotel.
+
+exports.getEventInHotel = async(req, res)=>{
+    try{
+        let hotelId = req.params.id
+        let hotel = await Hotel.findOne({_id: hotelId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        let events = hotel.event;
+        for (let i = 0; i <= events.length; i++) {
+            return res.send({message: `Los eventos son: ${events}`})
+        }
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error getting Hotel'})
+    }
+}
+
 
 exports.getHotel = async(req, res)=>{
     try{
@@ -116,6 +146,7 @@ exports.deleteHotel = async(req, res)=>{
         return res.status(500).send({message: 'Error deleting Hotel'})
     }
 }
+
 
 
 

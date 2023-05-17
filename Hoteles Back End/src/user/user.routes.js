@@ -8,17 +8,17 @@ const connectMultiparty = require('connect-multiparty')
 const upload = connectMultiparty({uploadDir: './uploads/users'})
 
 
-//==============================================Rutas públicas===========================
+//============================================== FUNCIONES GENERALES===========================
 api.put('/uploadImage/:id', upload, userController.addImage)
-api.get('/getUsers', userController.getUsers)
 api.get('/getImage/:fileName', upload, userController.getImage)
 api.post('/login', userController.login);
 
-//==============================================Para cliente Unicamente=======================
+//==============================================FUNCIONES PARA cliente Unicamente=======================
 api.post('/register', userController.register);
 api.post('/search/:id', userController.searchHotelAndVook);
+api.get('/searchByNOA', userController.searchHotelbyNameorAdrress);
 
-//===============================================Rutas solo de Admin=================
+//===============================================FUNCIONES solo de Admin=================
 api.put('/update/:id', userController.update);
 api.delete('/delete/:id', userController.delete);
 //Funcion del ADMIN para crear un administrador de un hotel
@@ -31,7 +31,8 @@ api.get('/seeUsersAdmin', userController.seeRegisteredUsersAdminHotel)
 api.get('/getUserr/:id', userController.obtener);
 //===============================================Rutas solo de Admin_HOTEL=================
 //Agregar habitaciones a un hotel
-api.put('/addHotles/:id', userController.addRooms)
+api.put('/addRoomsHotel/:id', userController.addRooms)
+api.put('/addEvents/:id', userController.addEvents)
 
 module.exports = api;
 

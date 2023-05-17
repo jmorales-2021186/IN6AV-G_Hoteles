@@ -5,6 +5,36 @@ const Room = require('../room/room.model')
 const Services = require('../AdittionalsHoteles/servicios.model')
 const User = require('../user/user.model')
 
+
+exports.createReservationDafault = async(req, res)=>{
+    try {
+        let userDefault = await User.findOne({name: '------'})
+       
+        let existRoom = await Room.findOne({name: 'Default'})
+       
+        let existServ = await Services.findOne({name: 'Ninguno'})
+        
+        let data = {
+            user: userDefault._id,
+            room: existRoom._id,
+            Services: existServ._id,
+            total: 0,
+            starDtate: Date.now(),
+            endingDate: Date.now()
+        }
+
+        //Guardar Reser
+        data.total = 0;
+        let reservation = new Reservation(data)
+        await reservation.save()
+    }
+     catch (err) { 
+        console.error(err)
+       
+    }
+}
+
+
 exports.getReservations = async(req, res)=>{
     try{
         let rese = await Reservation.find()

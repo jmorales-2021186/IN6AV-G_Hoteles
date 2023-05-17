@@ -18,15 +18,19 @@ const hotelSchema = mongoose.Schema({
     admin:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
     event: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
-    
-    description:{
-        type: String,
-        required:true
-    },
+
     image:{
         type: String,
         required: false
-       }
+       
+    },
+    NumReservations:{
+        type: Number,
+        required: true
+    },
+    Reservationes:[{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Reservation'
+    }]
     })
 
 module.exports = mongoose.model('Hotel', hotelSchema)

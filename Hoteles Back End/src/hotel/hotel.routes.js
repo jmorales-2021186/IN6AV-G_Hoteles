@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require('express')
-const api = express.Router()
+const api = express.Router();
 const hotelController = require('./hotel.controller')
 const connectMultiparty = require('connect-multiparty')
 const upload = connectMultiparty({uploadDir: './uploads/users'})
@@ -11,9 +11,7 @@ const upload = connectMultiparty({uploadDir: './uploads/users'})
 api.post('/add', hotelController.addHotel)
 api.get('/get', hotelController.getHotels)
 api.get('/get/:id', hotelController.getHotel)
-api.delete('/delete/:id', hotelController.deleteHotel)
-api.post('/addImg', hotelController.addImage)
+api.delete('/delete/:id', hotelController.deleteHotel);
+api.get('/eventInHotel/:id', hotelController.getEventInHotel);
 
 module.exports = api;
-
-/******************** */

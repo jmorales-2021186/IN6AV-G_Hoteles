@@ -27,6 +27,7 @@ const reservationSchema = mongoose.Schema({
         type: Date,
         required: true
     }
+    
 })
 
 module.exports = mongoose.model('Reservation', reservationSchema)
