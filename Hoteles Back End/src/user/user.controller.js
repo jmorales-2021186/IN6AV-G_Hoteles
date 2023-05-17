@@ -119,9 +119,6 @@ exports.searchHotelAndVook = async (req, res) => {
         if (!existUser) return res.send({ message: 'this user does not exist' })
         //va a buscar el hotel por nombre
         let data = req.body
-<<<<<<< HEAD
-        let hotel = await Hotel.findOne({ name: data.name } || { address: data.address })
-=======
         let hotel = await Hotel.findOne({
             $or: [{
                 $and: [
@@ -134,7 +131,6 @@ exports.searchHotelAndVook = async (req, res) => {
             }
             ]
         })
->>>>>>> jmorales
         if (!hotel) return res.status(500).send({ message: 'Hotel not Found ' })
         //encuentra el hotel y hace la reservacion    
         //verificar que el rol de usuario solo sera cliente
@@ -149,17 +145,10 @@ exports.searchHotelAndVook = async (req, res) => {
         //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
         if (data.endingDate <= data.starDtate) return res.send({ message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio' })
         //Verificar que la habitacion adquirir sea de ese hotel
-<<<<<<< HEAD
-        let product = hotel.room;
-        //Verificar que no se repitan los productos
-        for (let i = 0; i <= product.length; i++) {
-            if (product[i] == data.room) {
-=======
         let rooms = hotel.room;
         //Verificar que no se repitan los productos
         for (let i = 0; i <= rooms.length; i++) {
             if (rooms[i] == data.room) {
->>>>>>> jmorales
                 //actualiza el status a false al reservar
                 let updateRoom = await Room.findOneAndUpdate(
                     { _id: existRoom._id },
@@ -198,6 +187,7 @@ exports.save = async(req, res)=>{
         let validate = validateData(params);
         if(validate) return res.status(400).send(validate);
         //Role predefinido
+        if(data.role) return res.status(403).send({message: 'You can not add a role'})
         data.role = 'ADMIN_HOTEL';
         //Encriptar contraseña
         data.password = await encrypt(data.password)
@@ -294,7 +284,8 @@ exports.login = async(req, res)=>{
             let token = await createToken(user)
             let userLogged = {
                 username: user.username,
-                name: user.name
+                name: user.name,
+                role: user.role
             }
             return res.send({message: 'User logged sucessfully', token, userLogged, });
         }
@@ -392,3 +383,20 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
+
+
+
+
+
+//Funcion de obtener users
+exports.getUsers = async(req, res)=>{
+    try{
+        const getUser = await User.find()
+        return res.send({message: getUser})
+    }catch(e){
+        return res.status(500).send({message: 'Server Error'})
+    }
+}
+
+
+

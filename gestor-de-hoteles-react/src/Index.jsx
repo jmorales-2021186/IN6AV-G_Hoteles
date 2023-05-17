@@ -6,6 +6,10 @@ import { NotFoundPage } from './pages/NotFoundPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { HotelesPage } from './pages/Hoteles/HotelesPage'
+import { AddHotel } from './pages/Hoteles/AddHotel'
+import { UpdateHotel } from './pages/Hoteles/UpdateHotel'
+import { UserPage } from './pages/Users/UserPage'
+import { SideBar } from './pages/DashBoard/SideBar'
 
 
 export const NombreContexto = createContext()
@@ -17,8 +21,8 @@ export const Index = () => {
         name: "",
         username: "",
         role: "",
-      });
-    
+    });
+
 
     const routes = createBrowserRouter([
         {
@@ -28,26 +32,48 @@ export const Index = () => {
             children: [
                 {
                     path: '/',
-                    element: <HomePage/>
+                    element: <HomePage />
                 },
                 {
                     path: '/login',
-                    element: <LoginPage/>
+                    element: <LoginPage />
                 },
                 {
                     path: '/register',
-                    element: <RegisterPage/>
+                    element: <RegisterPage />
                 },
                 {
                     path: '/hoteles',
-                    element: <HotelesPage/>
+                    element: <HotelesPage />
+                },
+                {
+                    path: '/addHotel',
+                    element: <AddHotel />
+                },
+                {
+                    path: '/updateHotel',
+                    element: <UpdateHotel />
+                },
+                {
+                    path: '/users',
+                    element: <UserPage />
+                },
+                {
+                    path: '/sidebar',
+                    element: <SideBar />,
+                    children: [
+                        {
+                            path: 'hoteles',
+                            element: <HomePage/>
+                        }
+                    ]
                 }
-                
+
             ]
         }
     ])
     return (
-        <NombreContexto.Provider value={{ loggedIn,setLoggedIn, dataUser, setDataUser  }}>
+        <NombreContexto.Provider value={{ loggedIn, setLoggedIn, dataUser, setDataUser }}>
             <RouterProvider router={routes} />
         </NombreContexto.Provider>
     )
