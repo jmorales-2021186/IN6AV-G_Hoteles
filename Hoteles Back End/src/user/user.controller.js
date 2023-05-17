@@ -9,7 +9,8 @@ const Reservation = require('../reservation/reservation.model');
 const { validateData, encrypt, checkPassword } = require('../utils/validate');
 const { createToken } = require('../services/jwt');
 const fs = require('fs')
-const path = require('path')
+const path = require('path');
+const { response } = require('express');
 
 
 //===============FUNCIONES UNICAMENTE DE ADMINISTRADOR==================//
@@ -236,6 +237,16 @@ exports.addRooms = async(req, res)=>{
 
 //====================================FUNCIONES GENERALES================================
 //Funcion para todos los usarios 
+ exports.obtener = async(req, res)=>{
+    try{
+        let params = req.params.id
+        let exist = await User.findOne({_id: params})
+        if(!exist) return res.status(404).send({message: 'User not Found'})
+        return res.send({exist})
+    }catch(e){
+        return res.status(500).send({message: 'Error Server'})
+    }
+}
 
 exports.login = async(req, res)=>{
     try{

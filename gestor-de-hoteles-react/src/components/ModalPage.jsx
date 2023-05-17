@@ -1,23 +1,19 @@
 import React from 'react'
 import './modal.css'
 import { Form } from './Form'
+import gif from '../assets/gif.gif'
 
 export const ModalPage = ({ modal, setModal }) => {
     return (
         <>
-            {
-                modal ? (
+            
+        
+                
                     <div className='fondo-modal'>
-                        <div className="cont-modal">
-                            <Form
-                                parametro1={'Username'}
-                                parametro2={'Password'}
-                            />
-                        </div>
+                        <img src={gif} alt="" />
                     </div>
 
-                ) : <></>
-            }
+            
         </>
     )
 }

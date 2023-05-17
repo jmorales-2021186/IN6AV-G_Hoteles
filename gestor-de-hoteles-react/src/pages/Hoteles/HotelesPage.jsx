@@ -53,8 +53,8 @@ export const HotelesPage = () => {
 
                         {dataUser.role === 'ADMIN' ? (
                             <>
-                                <Link to='/addHotel' className="btn btn-warning" style={{ marginTop: '100px' }}>Nuevo Hotel</Link>
-                                <Link to='/updateHotel' className="btn btn-danger" style={{ marginTop: '100px', marginLeft: '10px' }}>Editar Hotel</Link>
+                                <Link to='/addHotel' className="btn btn-warning" >Nuevo Hotel</Link>
+                                <Link to='/updateHotel' className="btn btn-danger" style={{ marginLeft: '10px' }}>Editar Hotel</Link>
                             </>
                         ) : <></>
                         }

@@ -10,6 +10,11 @@ import { AddHotel } from './pages/Hoteles/AddHotel'
 import { UpdateHotel } from './pages/Hoteles/UpdateHotel'
 import { UserPage } from './pages/Users/UserPage'
 import { SideBar } from './pages/DashBoard/SideBar'
+import { UserClient } from './pages/Users/UserClient'
+import { UserAdmin } from './pages/Users/UserAdmin'
+import { AddAdmin } from './pages/Users/AddAdmin'
+import { UpdateAdmin } from './pages/Users/UpdateAdmin'
+import { EstadisticaPage } from './pages/EstadisticaPage'
 
 
 export const NombreContexto = createContext()
@@ -56,18 +61,35 @@ export const Index = () => {
                 },
                 {
                     path: '/users',
-                    element: <UserPage />
+                    element: <UserPage />,
+                    children: [
+                        {
+                            path: 'client',
+                            element: <UserClient/>
+                        },
+                        {
+                            path: 'admins',
+                            element: <UserAdmin/>
+                        },
+                    ]
                 },
                 {
                     path: '/sidebar',
-                    element: <SideBar />,
-                    children: [
-                        {
-                            path: 'hoteles',
-                            element: <HomePage/>
-                        }
-                    ]
+                    element: <SideBar />
+                },
+                {
+                    path: '/newAdmin',
+                    element: <AddAdmin/>
+                },
+                {
+                    path: '/updateAdmin/:id',
+                    element: <UpdateAdmin/>
+                },
+                {
+                    path: '/estadistica',
+                    element: <EstadisticaPage/>
                 }
+
 
             ]
         }

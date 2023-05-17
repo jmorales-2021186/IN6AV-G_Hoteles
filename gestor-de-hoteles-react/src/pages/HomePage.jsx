@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { NavBar } from '../components/NavBar'
 import '../HomePage.css'
@@ -13,17 +13,31 @@ export const HomePage = () => {
   const [modal, setModal] = useState(false)
 
 
-  const login = async () => {
+  const modalfunc = async () => {
     try {
-      setModal(true)
+      setTimeout(() => {
+        setModal(false)
+      }, 5000)
     } catch (e) {
       console.log(e);
     }
   }
 
+
+  useEffect(() => {
+    setModal(true)
+    modalfunc()
+  }, [])
+
   return (
     <>
-      <div style={{display: 'flex'}}>
+      {
+        modal ? (
+          <ModalPage />
+
+        ) : <></>
+      }
+      <div style={{ display: 'flex' }}>
 
         {
           dataUser.role === 'ADMIN' ? (<>

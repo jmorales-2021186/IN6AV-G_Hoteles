@@ -37,6 +37,7 @@ export const LoginPage = () => {
       }
     } catch (e) {
       console.log(e);
+      alert(response.data)
       throw new Error('Error logeandose');
     }
   }

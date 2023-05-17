@@ -27,7 +27,8 @@ api.post('/save', userController.save);
 api.get('/seeUsers', userController.seeRegisteredUsersClient)
 //Funcion para ver todos los usurios registrados ROL ADMIN_HOTEL
 api.get('/seeUsersAdmin', userController.seeRegisteredUsersAdminHotel)
-
+//Obtener ususario
+api.get('/getUserr/:id', userController.obtener);
 //===============================================Rutas solo de Admin_HOTEL=================
 //Agregar habitaciones a un hotel
 api.put('/addHotles/:id', userController.addRooms)
