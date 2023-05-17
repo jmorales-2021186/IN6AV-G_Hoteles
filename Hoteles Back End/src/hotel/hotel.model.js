@@ -22,7 +22,15 @@ const hotelSchema = mongoose.Schema({
     image:{
         type: String,
         required: false
-       }
+       
+    },
+    NumReservations:{
+        type: Number,
+        required: true
+    },
+    Reservationes:[{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Reservation'
+    }]
     })
 
 module.exports = mongoose.model('Hotel', hotelSchema)

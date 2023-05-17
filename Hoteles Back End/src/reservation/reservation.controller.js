@@ -6,45 +6,33 @@ const Services = require('../AdittionalsHoteles/servicios.model')
 const User = require('../user/user.model')
 
 
-// exports.createReservation = async(req, res)=>{
-//     try {
-//         //va treaer los datos del formuralio
-//         let data = req.body;
-//         //verificar que el usario existe
-//         let existUser = await User.findOne({_id: data.user})
-//         if(!existUser) return res.send({message: 'this user does not exist'})
-//         //verificar que el rol de usuario solo sera cliente
-//         if(existUser.role !== 'CLIENT') return res.send({message: 'Register to reserve a room'}) //Si no es rol CLIENTE no puede reservar
-//         //Verifica que si la habitacion que va a reservar exista
-//         let existRoom = await Room.findOne({_id: data.room})
-//         if(!existRoom) return res.send({message: 'this room does not exist'})
-//         if(existRoom.name == 'Default') return res.send({message: 'this room is not possible to book'})      
-//         //verifica que los servicion que va adquirir existen
-//         let existServ = await Services.findOne({_id: data.services})
-//         if(!existServ) return res.send({message: 'this service does not exist'})  
-//         //Verificar que la fecha que sea de fin no sea menor a la de inicio de la reservacion
+exports.createReservationDafault = async(req, res)=>{
+    try {
+        let userDefault = await User.findOne({name: '------'})
+       
+        let existRoom = await Room.findOne({name: 'Default'})
+       
+        let existServ = await Services.findOne({name: 'Ninguno'})
+        
+        let data = {
+            user: userDefault._id,
+            room: existRoom._id,
+            Services: existServ._id,
+            total: 0,
+            starDtate: Date.now(),
+            endingDate: Date.now()
+        }
 
-//         if(data.endingDate <= data.starDtate) return res.send({message: 'la fecha de al finalizar el hospedaje no puede ser menor a la de inicio'}) 
-//         //actualiza el status a false al reservar
-//         let updateRoom = await Room.findOneAndUpdate(
-//             {_id: existRoom._id},
-//             {status: false},
-//             {new: true}
-//             ) 
-//         if(!updateRoom) return res.status(404).send({message:'Error al cambiar status'});
-//         //verificar que si el estado el falso no se pueda reservar
-//         if(existRoom.status == false) return res.status(404).send({message:'This room cannot be reserved'});
-//         //Guardar Reser
-//         data.total = 0;
-//         let reservation = new Reservation(data)
-//         await reservation.save()
-//         return res.send({mmesage: 'Reservation saved succesfully'})
-//     }
-//      catch (err) { 
-//         console.error(err)
-//         return res.status(500).send({message: 'Error creating Room'})
-//     }
-// }
+        //Guardar Reser
+        data.total = 0;
+        let reservation = new Reservation(data)
+        await reservation.save()
+    }
+     catch (err) { 
+        console.error(err)
+       
+    }
+}
 
 
 exports.getReservations = async(req, res)=>{
