@@ -26,7 +26,7 @@ const hotelSchema = mongoose.Schema({
     },
     NumReservations:{
         type: Number,
-        required: true
+        required: false
     },
     Reservationes:[{
         type: mongoose.Schema.Types.ObjectId, ref: 'Reservation'

@@ -13,7 +13,7 @@ export const HomePage = () => {
   const [modal, setModal] = useState(false)
 
 
-  const modalfunc = async () => {
+  /* const modalfunc = async () => {
     try {
       setTimeout(() => {
         setModal(false)
@@ -27,20 +27,21 @@ export const HomePage = () => {
   useEffect(() => {
     setModal(true)
     modalfunc()
-  }, [])
+  }, []) */
 
   return (
     <>
-      {
+      {/* {
         modal ? (
           <ModalPage />
 
         ) : <></>
-      }
+      } */}
       <div style={{ display: 'flex' }}>
 
         {
           dataUser.role === 'ADMIN' ? (<>
+
             <SideBar />
           </>) : <NavBar />
 

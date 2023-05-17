@@ -9,9 +9,10 @@ export const UserAdmin = () => {
     const getAdmin = async () => {
         try {
             const { data } = await axios('http://localhost:3418/user/seeUsersAdmin')
-            console.log(data.userGet);
+            console.log(data);
             setUserAdmin(data.userGet)
         } catch (e) {
+            alert('malo')
             console.log(e);
         }
     }

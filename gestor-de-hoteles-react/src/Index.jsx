@@ -14,7 +14,7 @@ import { UserClient } from './pages/Users/UserClient'
 import { UserAdmin } from './pages/Users/UserAdmin'
 import { AddAdmin } from './pages/Users/AddAdmin'
 import { UpdateAdmin } from './pages/Users/UpdateAdmin'
-import { EstadisticaPage } from './pages/EstadisticaPage'
+import { EstadisticaPage } from './pages/Estadistica/EstadisticaPage'
 
 
 export const NombreContexto = createContext()

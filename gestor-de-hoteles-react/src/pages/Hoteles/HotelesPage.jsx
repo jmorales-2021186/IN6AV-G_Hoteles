@@ -14,18 +14,16 @@ export const HotelesPage = () => {
     const getHoteles = async () => {
         try {
             const { data } = await axios('http://localhost:3418/hotels/get')
-            console.log(data.hotels);
+            console.log(data);
             setHoteles(data.hotels)
-            console.log(dataUser);
-        } catch (e) {
+         } catch (e) {
             console.log(e);
         }
     }
 
     useEffect(() => { getHoteles() }, [])
 
-    console.log('d');
-    console.log(hoteles);
+  console.log(hoteles);
 
     return (
         <>
@@ -63,6 +61,7 @@ export const HotelesPage = () => {
 
                             {
                                 hoteles.map(({ description, name, _id }) => {
+                                    console.log('estamos en el listar');
                                     return (
                                         <ListarHoteles
                                             key={_id}

@@ -11,9 +11,9 @@ export const AddHotel = () => {
 
     const getAdmin = async () => {
         try {
-            const { data } = await axios('http://localhost:3418/user/getUsers')
-            setUserAdmin(data.message)
+            const { data } = await axios('http://localhost:3418/user/seeUsersAdmin')
             console.log(data.message);
+            setUserAdmin(data.userGet)
         } catch (e) {
             console.log(e);
         }
@@ -46,8 +46,8 @@ export const AddHotel = () => {
         getAdmin()
     }, [])
 
-    let filtrar = userAdmin.filter(user => user.role == 'ADMIN_HOTEL')
-
+/*      let filtrar = userAdmin.filter(user => user.role == 'ADMIN_HOTEL') 
+ */
     return (
         <>
             <NavBar />
@@ -67,8 +67,8 @@ export const AddHotel = () => {
                     <div className="mb-3">
                         <label htmlFor="inputAdmin" className="form-labler">Addmin Hotel</label>
                         <select id="inputAdmin" className="form-control">
-                            {
-                                filtrar.map(({ _id, name }, i) => {
+                             {
+                                userAdmin.map(({ _id, name }, i) => {
                                     return (
                                         <option key={i} value={_id}>{name}</option>
                                     )

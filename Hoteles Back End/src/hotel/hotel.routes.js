@@ -13,5 +13,6 @@ api.get('/get', hotelController.getHotels)
 api.get('/get/:id', hotelController.getHotel)
 api.delete('/delete/:id', hotelController.deleteHotel);
 api.get('/eventInHotel/:id', hotelController.getEventInHotel);
+api.post('/addImg', hotelController.addImage)
 
 module.exports = api;

@@ -273,7 +273,6 @@ exports.addRooms = async(req, res)=>{
     }
 }
 
-<<<<<<< HEAD
 //====================================FUNCIONES GENERALES================================
 //Funcion para todos los usarios 
  exports.obtener = async(req, res)=>{
@@ -286,9 +285,6 @@ exports.addRooms = async(req, res)=>{
         return res.status(500).send({message: 'Error Server'})
     }
 }
-=======
-//agregar eventos a un hotel
->>>>>>> 1e311eb331d2b5932f404e97cbd8c1506de43c75
 
 exports.addEvents = async(req, res)=>{
     try{
@@ -391,7 +387,8 @@ exports.login = async(req, res)=>{
             let token = await createToken(user)
             let userLogged = {
                 username: user.username,
-                name: user.name
+                name: user.name,
+                role: user.role
             }
             return res.send({message: 'User logged sucessfully', token, userLogged, });
         }
@@ -488,3 +485,10 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
+
+
+
+
+
+
+//obtener todos los usuarios
