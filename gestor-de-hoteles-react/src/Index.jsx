@@ -10,6 +10,8 @@ import { AddHotel } from "./pages/Hoteles/AddHotel";
 import { UpdateHotel } from "./pages/Hoteles/UpdateHotel";
 import { UserPage } from "./pages/Users/UserPage";
 import { SideBar } from "./pages/DashBoard/SideBar";
+import { TestPage } from "./pages/TestPage/TestPage";
+import { MoreIfo } from "./components/MoreInfo";
 
 export const NombreContexto = createContext();
 
@@ -36,12 +38,20 @@ export const Index = () => {
           element: <LoginPage />,
         },
         {
+          path: "/test",
+          element: <TestPage />,
+        },
+        {
           path: "/register",
           element: <RegisterPage />,
         },
         {
           path: "/hoteles",
           element: <HotelesPage />,
+        },
+        {
+          path: "/HotelsInfo/:id",
+          element: <MoreIfo></MoreIfo>,
         },
         {
           path: "/addHotel",

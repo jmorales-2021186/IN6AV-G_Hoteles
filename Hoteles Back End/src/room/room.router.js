@@ -4,7 +4,7 @@ const express = require('express')
 const api = express.Router()
 const roomController = require('./room.controller')
 const connectMultiparty = require('connect-multiparty')
-const upload = connectMultiparty({uploadDir: './uploads/users'})
+const upload = connectMultiparty({uploadDir: './uploads/bedrooms'})
 
 api.get('/get', roomController.getRooms)
 api.get('/get/:id', roomController.getRooms)

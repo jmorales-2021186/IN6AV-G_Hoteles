@@ -307,7 +307,7 @@ exports.addImage = async(req, res)=>{
     try{
         const userId = req.params.id;
         const alreadyImage = await User.findOne({_id: userId})
-        let pathFile = './uploads/users/'
+        let pathFile = './uploadsz/users/'
         if(alreadyImage.image) fs.unlinkSync(`${pathFile}${alreadyImage.image}`) 
         if(!req.files.image || !req.files.image.type) return res.status(400).send({message: 'Havent sent image'})
         //crear la ruta para guardar la imagen

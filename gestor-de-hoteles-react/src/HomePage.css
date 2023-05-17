@@ -197,10 +197,10 @@ button:focus {
   border-radius: 4px;
 }
 
-.top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover {
+/* .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover {
   background: rgba(238, 44, 60, .8);
   color: #ffffff;
-}
+} */
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   border: none;

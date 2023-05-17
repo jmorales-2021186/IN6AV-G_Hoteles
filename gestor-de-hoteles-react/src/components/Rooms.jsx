@@ -1,15 +1,14 @@
-import React from "react";
-import { SideBar } from "../../components/Sidebar/SideBar";
-import { MoreIfo } from "../../components/MoreInfo";
-import { Rooms } from "../../components/Rooms";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../HomePage.css";
 
-export const TestPage = () => {
+export const Rooms = ({ name, size, capacity, price, status, image }) => {
   const [pathFile, setPathFile] = useState();
   useEffect(() => {
     const getImage = async () => {
       try {
         const { data } = await axios(
-          `http://localhost:3418/room/getImage/QsErKSdXQfB3j-LXvSeOT59F.jpg`
+          `http://localhost:3418/room/getImage/${image}`
         );
 
         setPathFile(data);
@@ -20,6 +19,7 @@ export const TestPage = () => {
 
     getImage();
   }, [pathFile]);
+
   return (
     <>
       <div className="col-lg-4 col-md-6 special-grid drinks">

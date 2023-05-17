@@ -61,6 +61,7 @@ export const NavBar = () => {
                     className="nav-link "
                     id="dropdown-a"
                     data-toggle="dropdown"
+                    to="/test"
                   >
                     Blog
                   </Link>
