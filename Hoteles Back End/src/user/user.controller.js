@@ -187,7 +187,6 @@ exports.save = async(req, res)=>{
         let validate = validateData(params);
         if(validate) return res.status(400).send(validate);
         //Role predefinido
-        if(data.role) return res.status(403).send({message: 'You can not add a role'})
         data.role = 'ADMIN_HOTEL';
         //Encriptar contraseña
         data.password = await encrypt(data.password)
@@ -284,8 +283,7 @@ exports.login = async(req, res)=>{
             let token = await createToken(user)
             let userLogged = {
                 username: user.username,
-                name: user.name,
-                role: user.role
+                name: user.name
             }
             return res.send({message: 'User logged sucessfully', token, userLogged, });
         }
@@ -383,20 +381,3 @@ exports.getImage = async(req, res)=>{
         return res.status(500).send({message: 'Error getting image'});
     }
 }
-
-
-
-
-
-//Funcion de obtener users
-exports.getUsers = async(req, res)=>{
-    try{
-        const getUser = await User.find()
-        return res.send({message: getUser})
-    }catch(e){
-        return res.status(500).send({message: 'Server Error'})
-    }
-}
-
-
-

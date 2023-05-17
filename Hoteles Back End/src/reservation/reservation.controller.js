@@ -5,8 +5,6 @@ const Room = require('../room/room.model')
 const Services = require('../AdittionalsHoteles/servicios.model')
 const User = require('../user/user.model')
 
-<<<<<<< HEAD
-=======
 
 // exports.createReservation = async(req, res)=>{
 //     try {
@@ -49,7 +47,6 @@ const User = require('../user/user.model')
 // }
 
 
->>>>>>> jmorales
 exports.getReservations = async(req, res)=>{
     try{
         let rese = await Reservation.find()

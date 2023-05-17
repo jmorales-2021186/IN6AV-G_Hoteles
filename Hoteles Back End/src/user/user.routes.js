@@ -10,7 +10,6 @@ const upload = connectMultiparty({uploadDir: './uploads/users'})
 
 //==============================================Rutas públicas===========================
 api.put('/uploadImage/:id', upload, userController.addImage)
-api.get('/getUsers', userController.getUsers)
 api.get('/getImage/:fileName', upload, userController.getImage)
 api.post('/login', userController.login);
 

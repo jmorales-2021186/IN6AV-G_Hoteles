@@ -37,8 +37,7 @@ exports.addHotel = async(req, res)=>{
 
 exports.getHotels = async(req, res)=>{
     try{
-        let hotels = await Hotel.find();
-        console.log('llego');
+        let hotels = await Room.find();
         return res.send({message: 'Hotels Found', hotels})
     }catch(err){
         console.error(err)
