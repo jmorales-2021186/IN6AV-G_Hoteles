@@ -278,9 +278,9 @@ exports.addRooms = async(req, res)=>{
  exports.obtener = async(req, res)=>{
     try{
         let params = req.params.id
-        let exist = await User.findOne({_id: params})
-        if(!exist) return res.status(404).send({message: 'User not Found'})
-        return res.send({exist})
+        let userExist = await User.findOne({_id: params})
+        if(!userExist) return res.status(403).send({message: 'User not found'})
+        return res.send({userExist})
     }catch(e){
         return res.status(500).send({message: 'Error Server'})
     }
@@ -386,6 +386,7 @@ exports.login = async(req, res)=>{
 
             let token = await createToken(user)
             let userLogged = {
+                _id: user._id,
                 username: user.username,
                 name: user.name,
                 role: user.role

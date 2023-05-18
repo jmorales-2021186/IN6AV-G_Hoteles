@@ -13,7 +13,11 @@ api.get('/get', hotelController.getHotels)
 api.get('/get/:id', hotelController.getHotel)
 api.delete('/delete/:id', hotelController.deleteHotel);
 api.get('/eventInHotel/:id', hotelController.getEventInHotel);
+
+
 api.put('/uploadImage/:id',upload, hotelController.addImage)
-api.get('/getAdminn/:id',upload, hotelController.getAdminHotel)
+api.get('/obtenerDatos/:id', upload, hotelController.getAdminHotel)
+
+api.get('/getAdminn/:fileName',upload, hotelController.getImage)
 
 module.exports = api;

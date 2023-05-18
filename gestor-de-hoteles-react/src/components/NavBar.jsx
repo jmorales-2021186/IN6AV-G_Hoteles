@@ -47,6 +47,11 @@ export const NavBar = () => {
                       loggedIn === true ? (
                         <>
                           <li>
+                            <Link to='/infoUser' className='dropdown-item' >
+                                  Informacion Usuario
+                            </Link>
+                          </li>
+                          <li>
                             <Link
                               to='/'
                               onClick={() => {

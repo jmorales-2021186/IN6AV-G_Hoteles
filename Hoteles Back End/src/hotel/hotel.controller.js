@@ -35,7 +35,7 @@ exports.addHotel = async(req, res)=>{
         data.Reservationes = reser._id
         let hotel = new Hotel(data)
         await hotel.save()
-        return res.send({message: 'Hotel saved succesfully'})
+        return res.send({message: 'Hotel saved succesfully', hotel})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error creating Hotel'})
@@ -103,10 +103,12 @@ exports.getHotel = async(req, res)=>{
 exports.addImage = async(req, res)=>{
     try{
         const roomId = req.params.id; 
-        const alreadyImage = await Hotel.findOne({admin: roomId})
+        const alreadyImage = await Hotel.findOne({_id: roomId})
         console.log('1');
+        console.log(alreadyImage);
         let pathFile = './uploads/hoteles/'
         console.log('2');
+        console.log(req.files.image);
         if(alreadyImage.image) fs.unlinkSync(`${pathFile}${alreadyImage.image}`) 
         console.log('3');
         if(!req.files.image || !req.files.image.type) return res.status(400).send({message: 'Havent sent image'})
@@ -125,7 +127,7 @@ exports.addImage = async(req, res)=>{
             fileExt == 'gif'
         ){
             const updatedRoomImage = await Hotel.findOneAndUpdate(
-                {admin: roomId}, 
+                {_id: roomId}, 
                 {image: fileName}, 
                 {new: true}
             )
@@ -145,7 +147,7 @@ exports.addImage = async(req, res)=>{
 exports.getImage = async(req, res)=>{
     try{
         const fileName = req.params.fileName;
-        const pathFile = `./uploads/bedrooms/${fileName}`
+        const pathFile = `./uploads/hoteles/${fileName}`
 
         const image = fs.existsSync(pathFile);
         if(!image) return res.status(404).send({message: 'image not found'})

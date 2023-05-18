@@ -17,6 +17,7 @@ import { UpdateAdmin } from './pages/Users/UpdateAdmin'
 import { EstadisticaPage } from './pages/Estadistica/EstadisticaPage'
 import { Obtener } from './pages/Obtener'
 import { MoreIfo } from './components/MoreInfo'
+import { InfoUserPage } from './pages/InfoUserPage'
 
 
 
@@ -26,6 +27,7 @@ export const Index = () => {
 
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataUser, setDataUser] = useState({
+        _id: '',
         name: "",
         username: "",
         role: "",
@@ -100,6 +102,10 @@ export const Index = () => {
                     path: '/obtener',
                     element: <Obtener />
                 },
+                {
+                    path: '/infoUser',
+                    element: <InfoUserPage/>
+                }
 
 
 

@@ -19,7 +19,6 @@ export const HotelesPage = () => {
             console.log(data.hotels);
             setHoteles(data.hotels);
             setAlmacenador(data.hotels);
-            console.log(dataUser._id);
         } catch (e) {
             console.log(e);
         }
@@ -90,7 +89,7 @@ export const HotelesPage = () => {
 
 
                             {
-                                hoteles.map(({ description, name, _id }) => {
+                                hoteles.map(({ description, name, _id, image }) => {
                                     console.log('estamos en el listar');
                                     return (
                                         <ListarHoteles
@@ -98,6 +97,7 @@ export const HotelesPage = () => {
                                             id={_id} 
                                             name={name}
                                             description={description}
+                                            image={image}
                                             />
                                     )
 

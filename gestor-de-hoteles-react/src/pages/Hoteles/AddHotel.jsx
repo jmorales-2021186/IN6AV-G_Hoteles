@@ -9,10 +9,12 @@ export const AddHotel = () => {
 
     const navigate = useNavigate()
     const [userAdmin, setUserAdmin] = useState([])
-    const [archivos, setArchivos] = useState(null)
+    const [archivos, setArchivos] = useState()
 
-    const subirArchivos = (e)=>{
-        setArchivos(e)
+    const subirArchivos = (e) => {
+        const f = new FormData();
+        f.append('image', e.target.files[0])
+        setArchivos(f)
     }
 
     const getAdmin = async () => {
@@ -32,7 +34,6 @@ export const AddHotel = () => {
                 name: document.getElementById('inputName').value,
                 address: document.getElementById('inputAddress').value,
                 admin: document.getElementById('inputAdmin').value,
-                image: '',
                 description: document.getElementById('inputDescrption').value
             }
 
@@ -43,7 +44,8 @@ export const AddHotel = () => {
 
             //Mensaje satisfactorio
             alert(data.message)
-            await addImg(hotel.admin)
+            console.log(data.hotel.admin)
+            await addImg(data.hotel.admin)
             navigate('/hoteles')
         } catch (e) {
             console.log(e);
@@ -52,12 +54,12 @@ export const AddHotel = () => {
 
     const addImg = async (admin) => {
         try {
-
-            const { data } = await axios(`http://localhost:3418/hotels/getAdminn/${admin}`)
-            console.log('o');
-            console.log(data);
-            await agregarLaImg(data.existHotel._id)
-
+            
+            const { data } = await axios(`http://localhost:3418/hotels/obtenerDatos/${admin}`)
+            console.log('hola');
+            console.log(data)
+            await agregarLaImg(data.existHotel._id) 
+ 
         } catch (e) {
             console.log(e);
         }
@@ -65,18 +67,13 @@ export const AddHotel = () => {
 
     const agregarLaImg = async (admin) => {
         try {
-            const f = new FormData();
-            f.append('image', archivos)
-            /* let img = document.getElementById('inputImage').files
-            let image = img[0].name */
-            
-/*             const data = new FormData();
-            data.append('image', image); */
+            console.log('aQUIDS');
+            console.log(admin)
 
-            await axios.put(`http://localhost:3418/hotels/uploadImage/${admin}`,
-             f,
-             {headers: {'Content-Type': 'multipart/form-data'}}
-             )
+             await axios.put(`http://localhost:3418/hotels/uploadImage/${admin}`,
+                archivos,
+                { headers: { 'Content-Type': 'multipart/form-data' } }
+            ) 
         } catch (e) {
             console.log(e);
         }
@@ -132,7 +129,7 @@ export const AddHotel = () => {
 
                                 <div>
                                     <label htmlFor="inputImage" class="form-label">Miniatura</label>
-                                    <input style={{ padding: '10px' }} class="form-control form-control-lg" id="inputImage" type="file" onChange={(e)=> subirArchivos(e.target.files)}/>
+                                    <input style={{ padding: '10px' }} class="form-control form-control-lg" id="inputImage" type="file" onChange={subirArchivos} />
                                 </div>
 
                                 <Link to='' onClick={nuevoHotel}>
