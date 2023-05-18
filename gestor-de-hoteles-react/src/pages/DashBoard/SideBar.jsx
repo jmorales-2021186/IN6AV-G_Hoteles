@@ -21,10 +21,11 @@ export const SideBar = () => {
       <div className="sidebar">
         <div className="logo">
           <Link to='/' className="navbar-brand logo" >
-            <img src={image} alt="" style={{marginLeft:'-50px'}} width={50} height={50} />
+            <img src={image} alt="" style={{ marginLeft: '-50px' }} width={50} height={50} />
             <p>giov<span className='rojo'>any</span></p>
           </Link>
         </div>
+
         <ul className="nav">
           <li>
             <Link to='/'>
@@ -32,24 +33,49 @@ export const SideBar = () => {
               <span>Inicio</span>
             </Link>
           </li>
-          <li>
-            <Link to='/estadistica'>
-              <FontAwesomeIcon icon={faChartBar} />
-              <span>Estadísticas</span>
-            </Link>
-          </li>
-          <li>
-            <Link to='/hoteles'>
-              <FontAwesomeIcon icon={faHotel} />
-              <span>Hoteles</span>
-            </Link>
-          </li>
-          <li>
-            <Link to='/users'>
-              <FontAwesomeIcon icon={faHotel} />
-              <span>Users</span>
-            </Link>
-          </li>
+          {
+            dataUser.role === 'ADMIN' ? (
+              <>
+
+                <li>
+                  <Link to='/estadistica'>
+                    <FontAwesomeIcon icon={faChartBar} />
+                    <span>Estadísticas</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to='/hoteles'>
+                    <FontAwesomeIcon icon={faHotel} />
+                    <span>Hoteles</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to='/users'>
+                    <FontAwesomeIcon icon={faHotel} />
+                    <span>Users</span>
+                  </Link>
+                </li>
+              </>
+            ) : <></>
+          }
+
+
+          {
+            dataUser.role === 'ADMIN_HOTEL' ? (
+              <>
+                <li>
+                  <Link to='/hoteles'>
+                
+                    <FontAwesomeIcon icon={faHotel} />
+                    <span>..Hotel..</span>
+                  </Link>
+                </li>
+              </>
+            ) : <></>
+          }
+
 
           {
             loggedIn === true ? (

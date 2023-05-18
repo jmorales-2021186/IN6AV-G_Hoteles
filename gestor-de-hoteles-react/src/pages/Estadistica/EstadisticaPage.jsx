@@ -16,7 +16,7 @@ export const EstadisticaPage = () => {
         datasets: [{
             label: 'Reservaciones',
             backgroundColor: 'rgba(238, 44, 60, .8)',
-            borderColor: 'green',
+            borderColor: 'black',
             data: reservacion
         }]
     };
@@ -64,7 +64,7 @@ export const EstadisticaPage = () => {
 
                 <section id='proyectos'>
 
-                    <div className='centrar'>
+                    <div className='centrar' style={{marginTop: '200px'}}>
                         <Bar data={data} options={opciones} />
 
                     </div>

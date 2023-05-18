@@ -54,6 +54,18 @@ exports.getHotels = async(req, res)=>{
     }
 }
 
+//Obtener Hotel por admin
+exports.getAdminHotel = async(req, res)=>{
+    try{
+        let id = req.params.id
+        let existHotel = await Hotel.findOne({admin: id})
+        if(!existHotel) return res.status(403).send({message: 'Nos e encuentra'})
+        return res.send({existHotel})
+    }catch(e){
+        return res.status(500).send({message: 'Error Server'})
+    }
+}
+
 //Puede visualizar las habitaciones por hotel.
 
 exports.getEventInHotel = async(req, res)=>{
@@ -85,19 +97,25 @@ exports.getHotel = async(req, res)=>{
 }
 
 
+
 exports.addImage = async(req, res)=>{
     try{
         const roomId = req.params.id; 
         const alreadyImage = await Hotel.findOne({_id: roomId})
-        let pathFile = './uploads/bedrooms/'
+        console.log('1');
+        let pathFile = './uploads/hoteles/'
+        console.log('2');
         if(alreadyImage.image) fs.unlinkSync(`${pathFile}${alreadyImage.image}`) 
+        console.log('3');
         if(!req.files.image || !req.files.image.type) return res.status(400).send({message: 'Havent sent image'})
+        console.log('4');
         const filePath = req.files.image.path; 
         const fileSplit = filePath.split('\\') 
         const fileName = fileSplit[2];
         const extension = fileName.split('\.');
         const fileExt = extension[1] 
         console.log(fileExt)
+        console.log('2');
         if(
             fileExt == 'png' || 
             fileExt == 'jpg' || 

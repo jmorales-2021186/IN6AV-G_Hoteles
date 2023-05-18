@@ -40,7 +40,7 @@ export const HomePage = () => {
       <div style={{ display: 'flex' }}>
 
         {
-          dataUser.role === 'ADMIN' ? (<>
+         ( dataUser.role === 'ADMIN' || dataUser.role === 'ADMIN_HOTEL')? (<>
 
             <SideBar />
           </>) : <NavBar />

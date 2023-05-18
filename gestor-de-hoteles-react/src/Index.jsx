@@ -15,6 +15,8 @@ import { UserAdmin } from './pages/Users/UserAdmin'
 import { AddAdmin } from './pages/Users/AddAdmin'
 import { UpdateAdmin } from './pages/Users/UpdateAdmin'
 import { EstadisticaPage } from './pages/Estadistica/EstadisticaPage'
+import { Obtener } from './pages/Obtener'
+
 
 
 export const NombreContexto = createContext()
@@ -88,7 +90,13 @@ export const Index = () => {
                 {
                     path: '/estadistica',
                     element: <EstadisticaPage/>
-                }
+                },
+                {
+                    path: '/obtener',
+                    element: <Obtener/>
+                },
+              
+
 
 
             ]

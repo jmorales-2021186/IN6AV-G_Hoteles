@@ -101,9 +101,11 @@ exports.getImage = async(req, res)=>{
 
         const image = fs.existsSync(pathFile);
         if(!image) return res.status(404).send({message: 'image not found'})
+        console.log('bueno');
         return res.sendFile(path.resolve(pathFile))
     }catch(err){
         console.error(err);
+        console.log('aqui estas');
         return res.status(500).send({message: 'Error getting image'});
     }
 }

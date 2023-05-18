@@ -66,7 +66,8 @@ export const HotelesPage = () => {
                                         <ListarHoteles
                                             key={_id}
                                             name={name}
-                                            address={description} />
+                                            address={description}
+                                            id={_id} />
                                     )
 
                                 })
