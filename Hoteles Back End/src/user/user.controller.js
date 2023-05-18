@@ -273,6 +273,7 @@ exports.addRooms = async(req, res)=>{
     }
 }
 
+<<<<<<< HEAD
 //====================================FUNCIONES GENERALES================================
 //Funcion para todos los usarios 
  exports.obtener = async(req, res)=>{
@@ -309,6 +310,8 @@ exports.addEvents = async(req, res)=>{
         return res.status(500).send({message: 'error adding rooms'})
     }
 }
+=======
+>>>>>>> jmorales
 
 //Consultar todas las reservaciones hechas.
 

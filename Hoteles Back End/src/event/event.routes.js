@@ -4,7 +4,6 @@ const express = require('express')
 const api = express.Router();
 const eventController = require('./event.controller')
 
-api.post('/add', eventController.addEvent)
-
+api.put('/addEvents/:id', eventController.addEvents)
 module.exports = api
 

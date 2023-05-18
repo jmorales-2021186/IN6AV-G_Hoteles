@@ -20,23 +20,44 @@ exports.addEventEventDefaul = async(req, res)=>{
     }
 }
 
-exports.addEvent = async(req, res)=>{
+
+exports.addEvents = async(req, res)=>{
     try{
+        //ID DEL ADMIN HOTEL
+        let userId = req.params.id
+        //VA A IR A BUSCAR EL ID QUE TENGA ESE HOTEL
+        let hotel = await Hotel.findOne({admin: userId})
+        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
+        //Crear la habitacion
         let data = req.body;
-        let existType = await Type.findOne({_id: data.type})
-        if(!existType) return res.status(404).send({message: 'Type Event not found'})
-        let duplicateType = await Type.findOne({name: data.name})
-        if(!duplicateType){
-            return res.send({message: ' Event alredy created'})
+        console.log('1')
+        let existEvent = await Event.findOne({name: data.name})
+        console.log('2')
+        if(existEvent){
+            return res.send({message: 'Event alredy created'})
         }
-        let event = new Event(data)
-        await event.save()
-        return res.send({message: 'Event saved sucessfully', event})
-    }catch(err){
+        let existTypeEvent = await Type.findOne({_id: data.type})
+        if (!existTypeEvent) return res.send({ message: 'this type Event does not exist' })
+        console.log(existTypeEvent)
+        if (existTypeEvent.name == 'Ninguno') return res.send({ message: 'this type Event is not possible to book' })
+        console.log('3')
+        let eventAgregate = new Event(data)
+        await eventAgregate.save()
+       // AGREGAR LA HABITCION AL HOTEL
+        let addEvent = await Hotel.findOneAndUpdate(
+            {_id: hotel._id},
+            {$push:{
+            event: eventAgregate._id
+            }},
+            {new: true}
+        )
+        return res.send({message: 'Event saved succesfully', addEvent})
+     }catch(err){
         console.error(err)
-        return res.status(500).send({message: 'Error creating Event'})
+        return res.status(500).send({message: 'error adding events'})
     }
 }
+
 
 exports.getEvents = async(req, res)=>{
     try{
