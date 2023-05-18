@@ -27,11 +27,12 @@ export const UserClient = () => {
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Role</th>
+                        <th>image</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        userClient.map(({ name, surname, email, phone, role }, i) => {
+                        userClient.map(({ name, surname, email, phone, role, image }, i) => {
                             return (
                                 <>
                                     <tr key={i}>
@@ -41,6 +42,7 @@ export const UserClient = () => {
                                         <td>{email}</td>
                                         <td>{phone}</td>
                                         <td>{role}</td>
+                                        <td> <img crossOrigin="anonymous" src={`http://localhost:3418/user/getImage/${image}`} style={{width: '50px', height: '50px', borderRadius: '20px'}}/> </td>
                                     </tr>
 
                                 </>

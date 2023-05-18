@@ -6,16 +6,41 @@ import axios from 'axios'
 
 export const InfoUserPage = () => {
 
-    const { dataUser } = useContext(NombreContexto)
+
+    const navigate = useNavigate()
+    const { dataUser, setLoggedIn, setDataUser } = useContext(NombreContexto)
     const [user, setUser] = useState([])
 
     const getUser = async () => {
         try {
-            const { data } = await axios(`http://localhost:3418/user/getUserr/${dataUser._id}`)
+            console.log(dataUser);
+            const { data } = await axios(`http://localhost:3418/user/getUserr/${dataUser.id}`)
             console.log(data);
+            setUser(data.userExist)
         } catch (e) {
             console.log(e);
         }
+    }
+
+    const eliminarCuenta = async (id) => {
+        try {
+            let c = confirm('Seguro que quiere eliminar su cuenta?')
+            if (c) {
+                const { data } = await axios.delete(`http://localhost:3418/user/delete/${id}`)
+                console.log(data.message);
+                cerrar()
+            }
+            
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
+    const cerrar = ()=>{
+        localStorage.clear()
+        setLoggedIn(false)
+        setDataUser({})
+
     }
 
 
@@ -24,11 +49,20 @@ export const InfoUserPage = () => {
     return (
         <>
             <NavBar />
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                <div className="card" style={{ width: '18rem', marginTop: '200px ' }}>
+                    <img crossOrigin="anonymous" src={`http://localhost:3418/user/getImage/${user.image}`} className="card-img-top" alt="..." />
                     <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">{user.name} {user.surname}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">{user.email}</p>
+                        <p class="card-text">{user.phone}</p>
+
+                        <Link to='/' style={{ width: '200px', marginLeft: '15px' }} className='btn btn-danger' onClick={() => eliminarCuenta(user._id)}>Eliminar Cuenta</Link>
+                        <Link style={{ width: '200px', marginLeft: '15px', marginTop: '15px' }} className='btn btn-warning'>Editar Cuenta</Link>
                     </div>
+                </div>
             </div>
         </>
     )

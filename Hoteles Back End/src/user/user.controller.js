@@ -133,7 +133,7 @@ exports.register = async(req, res)=>{
         //Guardar la información
         let user = new User(data);
         await user.save();
-        return res.send({message: 'Account created sucessfully'});
+        return res.send({message: 'Account created sucessfully', user});
     }catch(err){
         console.error(err);
         return res.status(500).send({message: 'Error creating account', error: err.message})
@@ -386,7 +386,7 @@ exports.login = async(req, res)=>{
 
             let token = await createToken(user)
             let userLogged = {
-                _id: user._id,
+                id: user._id,
                 username: user.username,
                 name: user.name,
                 role: user.role
