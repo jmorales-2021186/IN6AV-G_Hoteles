@@ -452,8 +452,4 @@ exports.getImage = async(req, res)=>{
 }
 
 
-
-
-
-
 //obtener todos los usuarios
