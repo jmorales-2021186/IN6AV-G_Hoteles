@@ -1,10 +1,13 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { SideBar } from "../../components/Sidebar/SideBar";
 import { MoreIfo } from "../../components/MoreInfo";
 import { Rooms } from "../../components/Rooms";
+import axios from "axios";
 
 export const TestPage = () => {
   const [pathFile, setPathFile] = useState();
+  let img;
   useEffect(() => {
     const getImage = async () => {
       try {
@@ -13,6 +16,7 @@ export const TestPage = () => {
         );
 
         setPathFile(data);
+        img = data;
       } catch (e) {
         console.log(e);
       }
@@ -24,13 +28,13 @@ export const TestPage = () => {
     <>
       <div className="col-lg-4 col-md-6 special-grid drinks">
         <div className="gallery-single fix">
-          {pathFile && <img src={pathFile} className="img-fluid" alt={name} />}
+          {pathFile && <img src={img} className="img-fluid" />}
 
           <div className="why-text">
-            <h4>{name}</h4>
-            <p>{size}</p>
-            <p>{capacity}</p>
-            <h5> {price}</h5>
+            <h4></h4>
+            <p></p>
+            <p></p>
+            <h5> </h5>
           </div>
         </div>
       </div>
