@@ -24,6 +24,19 @@ exports.addRoomDefault = async(req, res)=>{
     }
 }
 
+
+exports.getRoom = async(req, res)=>{
+    try{
+        let roomId = req.params.id
+        let room = await Room.findOne({_id: roomId})
+        if(!room) return res.status(500).send({message:'this room does not exist'})
+        return res.send({mmesage: 'get room', room})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error getting '})
+    }
+}
+
 exports.getRooms = async (req, res)=>{
     try {
         let rooms = await Room.find()

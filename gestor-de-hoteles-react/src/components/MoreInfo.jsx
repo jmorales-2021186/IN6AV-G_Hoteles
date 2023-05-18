@@ -12,6 +12,8 @@ export const MoreIfo = () => {
   const [hotels, setHotels] = useState([{}]);
   const [room, setRoom] = useState([{}]);
   let roomsArray = [];
+
+  
   const getHoteles = async () => {
     try {
       const { data } = await axios(`http://localhost:3418/hotels/get/${id}`);
