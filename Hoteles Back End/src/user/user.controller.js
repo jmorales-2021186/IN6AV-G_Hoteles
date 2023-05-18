@@ -273,42 +273,6 @@ exports.addRooms = async(req, res)=>{
     }
 }
 
-//====================================FUNCIONES GENERALES================================
-//Funcion para todos los usarios 
- exports.obtener = async(req, res)=>{
-    try{
-        let params = req.params.id
-        let userExist = await User.findOne({_id: params})
-        if(!userExist) return res.status(403).send({message: 'User not found'})
-        return res.send({userExist})
-    }catch(e){
-        return res.status(500).send({message: 'Error Server'})
-    }
-}
-
-exports.addEvents = async(req, res)=>{
-    try{
-        //ID DEL ADMIN HOTEL
-        let userId = req.params.id
-        //VA A IR A BUSCAR EL ID QUE TENGA ESE HOTEL
-        let hotel = await Hotel.findOne({admin: userId})
-        if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
-        //id del evento
-        let data = req.body;
-       // AGREGAR LA HABITCION AL HOTEL
-        let addEvent = await Hotel.findOneAndUpdate(
-            {_id: hotel._id},
-            {$push:{
-            event: data.event
-            }},
-            {new: true}
-        )
-        return res.send({message: 'Event saved succesfully', addEvent})
-     }catch(err){
-        console.error(err)
-        return res.status(500).send({message: 'error adding rooms'})
-    }
-}
 
 //Consultar todas las reservaciones hechas.
 
