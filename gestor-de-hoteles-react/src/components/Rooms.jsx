@@ -7,24 +7,31 @@ export const Rooms = ({ name, size, capacity, price, status, image }) => {
   useEffect(() => {
     const getImage = async () => {
       try {
-        const { data } = await axios(
+        const data = await axios(
           `http://localhost:3418/room/getImage/${image}`
         );
 
-        setPathFile(data);
+        setPathFile(data.request.responseURL);
       } catch (e) {
         console.log(e);
       }
     };
 
     getImage();
-  }, [pathFile]);
+  }, []);
 
   return (
     <>
       <div className="col-lg-4 col-md-6 special-grid drinks">
         <div className="gallery-single fix">
-          {pathFile && <img src={pathFile} className="img-fluid" alt={name} />}
+          {pathFile && (
+            <img
+              crossOrigin="anonymous"
+              src={pathFile}
+              className="img-fluid"
+              alt={name}
+            />
+          )}
 
           <div className="why-text">
             <h4>{name}</h4>

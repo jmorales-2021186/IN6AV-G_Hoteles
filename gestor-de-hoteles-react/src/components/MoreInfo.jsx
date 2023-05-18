@@ -9,20 +9,46 @@ export const MoreIfo = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [hotels, setHotels] = useState([]);
-
+  const [hotels, setHotels] = useState([{}]);
+  const [room, setRoom] = useState([{}]);
+  let roomsArray = [];
   const getHoteles = async () => {
     try {
       const { data } = await axios(`http://localhost:3418/hotels/get/${id}`);
 
       setHotels(data);
       setTimeout(() => setLoading(false), 1000);
-      console.log(hotels.hotel.name);
+      console.log(data);
+      roomsArray = [hotels.hotel.room];
+      console.log("-------------");
+      console.log(roomsArray);
     } catch (e) {
       console.log(e);
     }
   };
-  useEffect(() => getHoteles, []);
+  const getRooms = async () => {
+    try {
+      const roomData = [];
+      console.log(roomsArray);
+      for (const element of roomsArray) {
+        console.log("entra");
+        let { datos } = await axios.get(
+          `http://localhost:3418/room/get/${element}`
+        );
+        console.log(datos);
+        roomData.push(datos);
+        setRoom(datos);
+      }
+      console.log(room);
+      room.map(({ name, size, capacity, price, image, _id }) => {
+        console.log(name, size, capacity, price, image, _id);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => getHoteles, getRooms(), []);
 
   if (loading) {
     return <img src={imgLoading} alt="" />;
@@ -122,13 +148,18 @@ export const MoreIfo = () => {
 
           <div className="row special-list">
             <div className="col-lg-4 col-md-6 special-grid drinks">
-              <Rooms
-                name="rosa"
-                size={20}
-                capacity={2}
-                price={200}
-                image="QsErKSdXQfB3j-LXvSeOT59F.jpg"
-              ></Rooms>
+              {room.map(({ name, size, capacity, price, image, _id }) => {
+                return (
+                  <Rooms
+                    key={_id}
+                    name={name}
+                    size={size}
+                    capacity={capacity}
+                    price={price}
+                    image={image}
+                  ></Rooms>
+                );
+              })}
             </div>
           </div>
         </div>

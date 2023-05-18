@@ -8,27 +8,30 @@ import axios from "axios";
 export const TestPage = () => {
   const [pathFile, setPathFile] = useState();
   let img;
+  const getImage = async () => {
+    try {
+      const data = await axios(
+        `http://localhost:3418/room/getImage/QsErKSdXQfB3j-LXvSeOT59F.jpg`
+      );
+      setPathFile(data.request.responseURL);
+      console.log(data.request.responseURL);
+      img = pathFile;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    const getImage = async () => {
-      try {
-        const { data } = await axios(
-          `http://localhost:3418/room/getImage/QsErKSdXQfB3j-LXvSeOT59F.jpg`
-        );
-
-        setPathFile(data);
-        img = data;
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     getImage();
-  }, [pathFile]);
+  }, []);
+  console.log(pathFile);
   return (
     <>
       <div className="col-lg-4 col-md-6 special-grid drinks">
         <div className="gallery-single fix">
-          {pathFile && <img src={img} className="img-fluid" />}
+          {pathFile && (
+            <img crossOrigin="anonymous" src={pathFile} className="img-fluid" />
+          )}
 
           <div className="why-text">
             <h4></h4>

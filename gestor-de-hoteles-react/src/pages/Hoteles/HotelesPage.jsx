@@ -9,23 +9,39 @@ import axios from "axios";
 export const HotelesPage = () => {
   const { dataUser } = useContext(NombreContexto);
   const [hoteles, setHoteles] = useState([]);
-
+  const [alamacenador, setAlmacenador] = useState({});
+  const [busqueda, setBusqueda] = useState("");
   const getHoteles = async () => {
     try {
       const { data } = await axios("http://localhost:3418/hotels/get");
       console.log(data.hotels);
       setHoteles(data.hotels);
-      console.log(dataUser);
+      setAlmacenador(data.hotels);
+      console.log(dataUser._id);
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  };
+
+  //Busqueda
+  const filtrar = (bucar) => {
+    var resultados = alamacenador.filter((element) => {
+      if (element.name.toString().toLowerCase().includes(bucar.toLowerCase())) {
+        return element;
+      }
+    });
+    setHoteles(resultados);
   };
 
   useEffect(() => {
     getHoteles();
   }, []);
 
-  console.log("d");
   console.log(hoteles);
 
   return (
@@ -43,7 +59,14 @@ export const HotelesPage = () => {
               </div>
             </div>
           </div>
-
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Buscar"
+            aria-label="Buscar"
+            value={busqueda}
+            onChange={handleChange}
+          />
           <div className="centrar">
             {dataUser.role === "ADMIN" ? (
               <>

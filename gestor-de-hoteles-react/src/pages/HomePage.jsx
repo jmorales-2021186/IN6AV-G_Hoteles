@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import "../HomePage.css";
 import header from "../assets/header.jpg";
-import { NombreContexto } from "../index";
+import { NombreContexto } from "../Index";
 import { ModalPage } from "../components/ModalPage";
 import { SideBar } from "./DashBoard/SideBar";
 
