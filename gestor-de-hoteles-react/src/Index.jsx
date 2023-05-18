@@ -27,7 +27,7 @@ export const Index = () => {
 
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataUser, setDataUser] = useState({
-        _id: '',
+        id: '',
         name: "",
         username: "",
         role: "",

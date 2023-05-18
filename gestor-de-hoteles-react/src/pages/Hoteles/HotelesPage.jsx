@@ -66,18 +66,21 @@ export const HotelesPage = () => {
                             </div>
                         </div>
                     </div>
-                    
-                    <input
-                        className="form-control me-2"
-                        type="search"
-                        placeholder="Buscar"
-                        aria-label="Buscar"
-                        value={busqueda}
-                        onChange={handleChange}
-                    />
+
 
                     <div className="centrar">
 
+                        <div className='input-group mb-3'>
+
+                            <input
+                                className="form-control me-2"
+                                type="search"
+                                placeholder="Buscar"
+                                aria-label="Buscar"
+                                value={busqueda}
+                                onChange={handleChange}
+                            />
+                        </div>
                         {dataUser.role === 'ADMIN' ? (
                             <>
                                 <Link to='/addHotel' className="btn btn-warning" >Nuevo Hotel</Link>
@@ -94,11 +97,11 @@ export const HotelesPage = () => {
                                     return (
                                         <ListarHoteles
                                             key={_id}
-                                            id={_id} 
+                                            id={_id}
                                             name={name}
                                             description={description}
                                             image={image}
-                                            />
+                                        />
                                     )
 
                                 })
