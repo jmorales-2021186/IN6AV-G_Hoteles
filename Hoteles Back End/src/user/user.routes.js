@@ -35,4 +35,3 @@ api.put('/addRoomsHotel/:id', userController.addRooms)
 api.put('/addEvents/:id', userController.addEvents)
 
 module.exports = api;
-

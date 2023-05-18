@@ -29,9 +29,17 @@ export const NavBar = () => {
                 <li className="nav-item">
                   <Link to='/hoteles' className="nav-link" >Hoteles</Link>
                 </li>
-                
 
-                
+                {
+                  loggedIn === true ? (
+                    <li className="nav-item">
+                      <Link to='/hoteles' className="nav-link" >Eventos</Link>
+                    </li>
+                  ) : <></>
+                }
+
+
+
 
               </ul>
             </div>
@@ -48,7 +56,7 @@ export const NavBar = () => {
                         <>
                           <li>
                             <Link to='/infoUser' className='dropdown-item' >
-                                  Informacion Usuario
+                              Informacion Usuario
                             </Link>
                           </li>
                           <li>
