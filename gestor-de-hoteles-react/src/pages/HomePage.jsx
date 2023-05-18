@@ -5,7 +5,7 @@ import '../HomePage.css'
 import header from '../assets/header.jpg'
 import { NombreContexto } from '../index'
 import { ModalPage } from '../components/ModalPage'
-import { SideBar } from './DashBoard/SideBar'
+import { SideBar } from '../components/SideBar/SideBar'
 
 export const HomePage = () => {
 

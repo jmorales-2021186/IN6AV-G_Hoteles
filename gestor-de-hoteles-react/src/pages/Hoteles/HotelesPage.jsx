@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { NavBar } from '../../components/NavBar'
-import { SideBar } from '../DashBoard/SideBar'
+import { SideBar } from '../../components/SideBar/SideBar'
 import { ListarHoteles } from './ListarHoteles'
 import { NombreContexto } from '../../index'
 import { Link } from 'react-router-dom'

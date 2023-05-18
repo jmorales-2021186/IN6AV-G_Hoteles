@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate, Outlet } from 'react-router-dom'
 import { NavBar } from '../../components/NavBar'
 import axios from 'axios'
-import { SideBar } from '../DashBoard/SideBar'
+import { SideBar } from '../../components/SideBar/SideBar'
 import { Table } from '../../components/Table'
 
 export const UserPage = () => {

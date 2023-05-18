@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Children } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { SideBar } from '../DashBoard/SideBar'
+import { SideBar } from '../../components/SideBar/SideBar'
 import axios from 'axios'
 import { Bar } from 'react-chartjs-2'
 import Chart, { elements } from 'chart.js/auto';
