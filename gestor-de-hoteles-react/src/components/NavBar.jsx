@@ -29,11 +29,7 @@ export const NavBar = () => {
                 <li className="nav-item">
                   <Link to='/hoteles' className="nav-link" >Hoteles</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" >About</Link></li>
-                <li className="nav-item dropdown">
-                  <Link className="nav-link " id="dropdown-a" data-toggle="dropdown">Pages</Link>
-                </li>
+                
 
                 
 

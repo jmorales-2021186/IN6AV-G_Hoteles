@@ -24,6 +24,10 @@ const hotelSchema = mongoose.Schema({
         required: false
        
     },
+    description: {
+        type: String,
+        required: true
+    },
     NumReservations:{
         type: Number,
         required: false

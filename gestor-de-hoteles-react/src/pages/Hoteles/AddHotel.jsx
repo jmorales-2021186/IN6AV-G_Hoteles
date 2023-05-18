@@ -9,6 +9,11 @@ export const AddHotel = () => {
 
     const navigate = useNavigate()
     const [userAdmin, setUserAdmin] = useState([])
+    const [archivos, setArchivos] = useState(null)
+
+    const subirArchivos = (e)=>{
+        setArchivos(e)
+    }
 
     const getAdmin = async () => {
         try {
@@ -27,7 +32,7 @@ export const AddHotel = () => {
                 name: document.getElementById('inputName').value,
                 address: document.getElementById('inputAddress').value,
                 admin: document.getElementById('inputAdmin').value,
-                image:'',
+                image: '',
                 description: document.getElementById('inputDescrption').value
             }
 
@@ -51,7 +56,7 @@ export const AddHotel = () => {
             const { data } = await axios(`http://localhost:3418/hotels/getAdminn/${admin}`)
             console.log('o');
             console.log(data);
-            await  agregarLaImg(data.existHotel._id)
+            await agregarLaImg(data.existHotel._id)
 
         } catch (e) {
             console.log(e);
@@ -60,12 +65,18 @@ export const AddHotel = () => {
 
     const agregarLaImg = async (admin) => {
         try {
-            let img = document.getElementById('inputImage').files
-            console.log(img[0].name);
-            let image = img[0].name
-            console.log('aqui');
-            const { data } = await axios.put(`http://localhost:3418/hotels/uploadImage/${admin}`, image)
-            console.log(data);
+            const f = new FormData();
+            f.append('image', archivos)
+            /* let img = document.getElementById('inputImage').files
+            let image = img[0].name */
+            
+/*             const data = new FormData();
+            data.append('image', image); */
+
+            await axios.put(`http://localhost:3418/hotels/uploadImage/${admin}`,
+             f,
+             {headers: {'Content-Type': 'multipart/form-data'}}
+             )
         } catch (e) {
             console.log(e);
         }
@@ -121,7 +132,7 @@ export const AddHotel = () => {
 
                                 <div>
                                     <label htmlFor="inputImage" class="form-label">Miniatura</label>
-                                    <input style={{ padding: '10px' }} class="form-control form-control-lg" id="inputImage" type="file" />
+                                    <input style={{ padding: '10px' }} class="form-control form-control-lg" id="inputImage" type="file" onChange={(e)=> subirArchivos(e.target.files)}/>
                                 </div>
 
                                 <Link to='' onClick={nuevoHotel}>

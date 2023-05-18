@@ -4,6 +4,7 @@ import axios from "axios";
 import "../HomePage.css";
 import imgLoading from "../assets/logo.png";
 import { Rooms } from "../components/Rooms";
+import { NavBar } from "./NavBar";
 
 export const MoreIfo = () => {
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,8 @@ export const MoreIfo = () => {
       console.log(e);
     }
   };
+
+
   const getRooms = async () => {
     try {
       const roomData = [];
@@ -58,6 +61,7 @@ export const MoreIfo = () => {
 
   return (
     <>
+      <NavBar/>
       <div className="about-section-box">
         <div className="container">
           <div className="row">

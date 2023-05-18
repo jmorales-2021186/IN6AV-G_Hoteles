@@ -11,11 +11,13 @@ const reservationModel = require('../reservation/reservation.model')
 exports.addHotel = async(req, res)=>{
     try{
         let data = req.body;
+        console.log('1');
         let existHotel = await Hotel.findOne({name: data.name})
         if(existHotel){
             return res.send({message: 'Hotel alredy created '})
             
         }
+        console.log('2');
         let checkAdminHotel = await User.findOne({_id: data.admin})
         if(checkAdminHotel.role !== 'ADMIN_HOTEL') return res.send({message: 'Can not add this user'})
         //verificar que es admin no tanga ya un hotel asignado
@@ -101,7 +103,7 @@ exports.getHotel = async(req, res)=>{
 exports.addImage = async(req, res)=>{
     try{
         const roomId = req.params.id; 
-        const alreadyImage = await Hotel.findOne({_id: roomId})
+        const alreadyImage = await Hotel.findOne({admin: roomId})
         console.log('1');
         let pathFile = './uploads/hoteles/'
         console.log('2');
@@ -123,7 +125,7 @@ exports.addImage = async(req, res)=>{
             fileExt == 'gif'
         ){
             const updatedRoomImage = await Hotel.findOneAndUpdate(
-                {_id: roomId}, 
+                {admin: roomId}, 
                 {image: fileName}, 
                 {new: true}
             )
