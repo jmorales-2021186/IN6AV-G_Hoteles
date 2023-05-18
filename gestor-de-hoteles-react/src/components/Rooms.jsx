@@ -17,7 +17,7 @@ export const Rooms = ({ name, size, capacity, price, status, image }) => {
       }
     };
 
-    getImage();
+    /* getImage(); */
   }, []);
 
   return (

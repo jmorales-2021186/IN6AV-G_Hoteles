@@ -8,26 +8,47 @@ import axios from 'axios'
 
 export const HotelesPage = () => {
 
-    const { dataUser } = useContext(NombreContexto)
+    const { dataUser } = useContext(NombreContexto);
     const [hoteles, setHoteles] = useState([]);
+    const [alamacenador, setAlmacenador] = useState({});
+    const [busqueda, setBusqueda] = useState("");
 
     const getHoteles = async () => {
         try {
-            const { data } = await axios('http://localhost:3418/hotels/get')
-            console.log(data);
-            setHoteles(data.hotels)
-         } catch (e) {
+            const { data } = await axios("http://localhost:3418/hotels/get");
+            console.log(data.hotels);
+            setHoteles(data.hotels);
+            setAlmacenador(data.hotels);
+            console.log(dataUser._id);
+        } catch (e) {
             console.log(e);
         }
-    }
+    };
 
-    useEffect(() => { getHoteles() }, [])
+    const handleChange = (e) => {
+        setBusqueda(e.target.value);
+        filtrar(e.target.value);
+    };
 
-  console.log(hoteles);
+    //Busqueda
+    const filtrar = (bucar) => {
+        var resultados = alamacenador.filter((element) => {
+            if (element.name.toString().toLowerCase().includes(bucar.toLowerCase())) {
+                return element;
+            }
+        });
+        setHoteles(resultados);
+    };
+
+    useEffect(() => {
+        getHoteles();
+    }, []);
+
+    console.log(hoteles);
 
     return (
         <>
-            <section id={dataUser.role === 'ADMIN'?'concted':''}>
+            <section id={dataUser.role === 'ADMIN' ? 'concted' : ''}>
                 <aside>
                     {
                         dataUser.role === 'ADMIN' ? (
@@ -36,7 +57,7 @@ export const HotelesPage = () => {
                     }
                 </aside>
 
-                <section id={dataUser.role === 'ADMIN' ?'proyectos':''}>
+                <section id={dataUser.role === 'ADMIN' ? 'proyectos' : ''}>
                     <div class="all-page-title page-breadcrumb">
                         <div class="container text-center">
                             <div class="row">
@@ -46,6 +67,15 @@ export const HotelesPage = () => {
                             </div>
                         </div>
                     </div>
+                    
+                    <input
+                        className="form-control me-2"
+                        type="search"
+                        placeholder="Buscar"
+                        aria-label="Buscar"
+                        value={busqueda}
+                        onChange={handleChange}
+                    />
 
                     <div className="centrar">
 

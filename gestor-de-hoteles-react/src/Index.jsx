@@ -16,6 +16,7 @@ import { AddAdmin } from './pages/Users/AddAdmin'
 import { UpdateAdmin } from './pages/Users/UpdateAdmin'
 import { EstadisticaPage } from './pages/Estadistica/EstadisticaPage'
 import { Obtener } from './pages/Obtener'
+import { MoreIfo } from './components/MoreInfo'
 
 
 
@@ -55,7 +56,7 @@ export const Index = () => {
                 },
                 {
                     path: "/HotelsInfo/:id",
-                    element: <MoreIfo></MoreIfo>,
+                    element: <MoreIfo/>
                 },
                 {
                     path: '/addHotel',
