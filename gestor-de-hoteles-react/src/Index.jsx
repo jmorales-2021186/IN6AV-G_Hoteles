@@ -54,6 +54,10 @@ export const Index = () => {
                     element: <HotelesPage />
                 },
                 {
+                    path: "/HotelsInfo/:id",
+                    element: <MoreIfo></MoreIfo>,
+                },
+                {
                     path: '/addHotel',
                     element: <AddHotel />
                 },
@@ -67,11 +71,11 @@ export const Index = () => {
                     children: [
                         {
                             path: 'client',
-                            element: <UserClient/>
+                            element: <UserClient />
                         },
                         {
                             path: 'admins',
-                            element: <UserAdmin/>
+                            element: <UserAdmin />
                         },
                     ]
                 },
@@ -81,21 +85,21 @@ export const Index = () => {
                 },
                 {
                     path: '/newAdmin',
-                    element: <AddAdmin/>
+                    element: <AddAdmin />
                 },
                 {
                     path: '/updateAdmin/:id',
-                    element: <UpdateAdmin/>
+                    element: <UpdateAdmin />
                 },
                 {
                     path: '/estadistica',
-                    element: <EstadisticaPage/>
+                    element: <EstadisticaPage />
                 },
                 {
                     path: '/obtener',
-                    element: <Obtener/>
+                    element: <Obtener />
                 },
-              
+
 
 
 
