@@ -28,10 +28,10 @@ api.get('/seeUsers', userController.seeRegisteredUsersClient)
 //Funcion para ver todos los usurios registrados ROL ADMIN_HOTEL
 api.get('/seeUsersAdmin', userController.seeRegisteredUsersAdminHotel)
 //Obtener ususario
-// api.get('/getUserr/:id', userController.obtener);
+api.get('/getUserr/:id', userController.obtener);
 //===============================================Rutas solo de Admin_HOTEL=================
 //Agregar habitaciones a un hotel
 api.put('/addRoomsHotel/:id', userController.addRooms)
-// api.put('/addEvents/:id', userController.addEvents)
 
 module.exports = api;
+

@@ -364,6 +364,16 @@ exports.login = async(req, res)=>{
     }
 }
 
+exports.obtener = async(req, res)=>{
+    try{
+        let params = req.params.id
+        let userExist = await User.findOne({_id: params})
+        if(!userExist) return res.stataus(404).send({message: 'User not found'})
+        return res.send({userExist})
+    }catch(e){
+        return res.stataus(500).send({message: 'Error Serverrr'})
+    }
+}
 
 exports.update = async(req, res)=>{
     try {

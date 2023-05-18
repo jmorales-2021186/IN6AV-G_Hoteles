@@ -15,7 +15,8 @@ export const InfoUserPage = () => {
         try {
             console.log(dataUser);
             const { data } = await axios(`http://localhost:3418/user/getUserr/${dataUser.id}`)
-            console.log(data);
+            console.log('Hola');
+            console.log(data.userExist);
             setUser(data.userExist)
         } catch (e) {
             console.log(e);
