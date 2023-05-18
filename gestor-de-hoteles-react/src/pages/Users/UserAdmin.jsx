@@ -21,7 +21,7 @@ export const UserAdmin = () => {
         try{
             let confirmacion = confirm('Seguro que deseas elimnar este Administrador')
             if(confirmacion){
-                const { data } = await axios.delete(`http://localhost:3418/user/delete/${id}`)
+                const { data } = await axios.delete(`http://localhost:3418/user/deleteAdmin/${id}`)
                 alert(data.message)
                 getAdmin()
             }

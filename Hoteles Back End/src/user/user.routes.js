@@ -17,10 +17,11 @@ api.post('/login', userController.login);
 api.post('/register', userController.register);
 api.post('/search/:id', userController.searchHotelAndVook);
 api.get('/searchByNOA', userController.searchHotelbyNameorAdrress);
+api.delete('/delete/:id', userController.deleteClient)
 
 //===============================================FUNCIONES solo de Admin=================
 api.put('/update/:id', userController.update);
-api.delete('/delete/:id', userController.delete);
+api.delete('/deleteAdmin/:id', userController.deleteAdminHotel);
 //Funcion del ADMIN para crear un administrador de un hotel
 api.post('/save', userController.save);
 //Funcion para ver todos los usurios registrados ROL CLIENTE

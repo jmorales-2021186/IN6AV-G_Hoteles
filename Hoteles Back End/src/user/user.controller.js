@@ -394,7 +394,22 @@ exports.update = async(req, res)=>{
     }
 }
 
-exports.delete = async(req, res)=>{
+exports.deleteAdminHotel = async(req, res)=>{
+    try{
+        //Obtener el id a eliminar
+        let userId = req.params.id;
+        //Eliminar
+        let userDeleted = await User.findOneAndDelete({_id: userId});
+        if(!userDeleted) return res.send({message: 'Account not found and not deleted'});
+        return res.send({message: `Account with username ${userDeleted.username} deleted sucessfully`});
+    }catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Error not deleted'});
+    }
+}
+
+
+exports.deleteClient = async(req, res)=>{
     try{
         //Obtener el id a eliminar
         let userId = req.params.id;
