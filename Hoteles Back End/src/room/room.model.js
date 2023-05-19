@@ -23,6 +23,12 @@ const roomSchema = mongoose.Schema({
             type: String,
             required: false
     },
+    hotel:
+        {type: mongoose.Schema.Types.ObjectId, ref: 'Hotel'}
+
+    
+
+    ,
     status:{
         type: Boolean,
         required: true

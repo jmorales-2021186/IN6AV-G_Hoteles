@@ -12,9 +12,8 @@ export const MoreIfo = () => {
   const navigate = useNavigate();
   const [hotels, setHotels] = useState([{}]);
   const [room, setRoom] = useState([{}]);
-  let roomsArray = [];
+  [];
 
-  
   const getHoteles = async () => {
     try {
       const { data } = await axios(`http://localhost:3418/hotels/get/${id}`);
@@ -22,38 +21,27 @@ export const MoreIfo = () => {
       setHotels(data);
       setTimeout(() => setLoading(false), 1000);
       console.log(data);
-      roomsArray = [hotels.hotel.room];
-      console.log("-------------");
-      console.log(roomsArray);
     } catch (e) {
       console.log(e);
     }
   };
 
-
   const getRooms = async () => {
     try {
-      const roomData = [];
-      console.log(roomsArray);
-      for (const element of roomsArray) {
-        console.log("entra");
-        let { datos } = await axios.get(
-          `http://localhost:3418/room/get/${element}`
-        );
-        console.log(datos);
-        roomData.push(datos);
-        setRoom(datos);
-      }
-      console.log(room);
-      room.map(({ name, size, capacity, price, image, _id }) => {
-        console.log(name, size, capacity, price, image, _id);
-      });
+      const { data } = await axios.get(
+        `http://localhost:3418/room/getRoom/${id}`
+      );
+      console.log(data);
+      setRoom(data.hotel);
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(() => {getHoteles(), getRooms()}, []);
+  useEffect(() => getHoteles, []);
+
+  useEffect(() => getRooms, []);
 
   if (loading) {
     return <img src={imgLoading} alt="" />;
@@ -61,7 +49,7 @@ export const MoreIfo = () => {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className="about-section-box">
         <div className="container">
           <div className="row">

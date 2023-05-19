@@ -59,6 +59,20 @@ exports.getRoom = async(req, res)=>{
     }
 }
 
+exports.getRoomHotel = async(req, res) => {
+    try {
+        
+        let roomId = req.params.id 
+        console.log(roomId)
+        let hotel = await Room.find({hotel: roomId})
+        if(!hotel) return res.status(500).send({message:"not found room hotel"})
+        return res.send({message: "found room", hotel})
+    } catch (err) {
+        console.log(err)
+        return res.send({message: "something wrong"})
+    }
+}
+
 exports.deleteRoom = async(req, res)=>{
     try{
         let roomId = req.params.id
