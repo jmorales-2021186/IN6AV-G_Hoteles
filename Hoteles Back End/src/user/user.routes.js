@@ -17,7 +17,7 @@ api.post('/login', userController.login);
 api.post('/register', userController.register);
 api.post('/search/:id', userController.searchHotelAndVook);
 api.get('/searchByNOA', userController.searchHotelbyNameorAdrress);
-api.delete('/delete/:id', userController.deleteClient)
+api.delete('/deleteClient/:id', userController.deleteClient)
 
 //===============================================FUNCIONES solo de Admin=================
 api.put('/update/:id', userController.update);

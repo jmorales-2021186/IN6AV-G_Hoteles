@@ -27,7 +27,7 @@ export const InfoUserPage = () => {
         try {
             let c = confirm('Seguro que quiere eliminar su cuenta?')
             if (c) {
-                const { data } = await axios.delete(`http://localhost:3418/user/delete/${id}`)
+                const { data } = await axios.delete(`http://localhost:3418/user/deleteClient/${id}`)
                 console.log(data.message);
                 cerrar()
             }

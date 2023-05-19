@@ -2,6 +2,7 @@
 
 const Type = require('../eventType/type.model')
 const Event = require('./event.model')
+const Hotel = require('../hotel/hotel.model')
 
 exports.addEventEventDefaul = async(req, res)=>{
     try{
