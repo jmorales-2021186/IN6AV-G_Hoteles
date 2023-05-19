@@ -22,11 +22,14 @@ exports.createReservationDafault = async(req, res)=>{
             starDtate: Date.now(),
             endingDate: Date.now()
         }
+        
 
         //Guardar Reser
         data.total = 0;
         let reservation = new Reservation(data)
-        await reservation.save()
+        let existSer = await Reservation.findOne({room: existRoom._id})
+        if(!existSer) await reservation.save()
+        
     }
      catch (err) { 
         console.error(err)
