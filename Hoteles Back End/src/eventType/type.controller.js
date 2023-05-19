@@ -32,7 +32,7 @@ exports.addTypeEvent = async(req, res)=>{
 exports.getTypes = async(req, res)=>{
     try{
         let types = await Type.find()
-        return res.send({message: 'Types found', types})
+        return res.send({types})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error getting Types'})

@@ -18,6 +18,12 @@ import { EstadisticaPage } from './pages/Estadistica/EstadisticaPage'
 import { Obtener } from './pages/Obtener'
 import { MoreIfo } from './components/MoreInfo'
 import { InfoUserPage } from './pages/InfoUserPage'
+import { EventoPage } from './pages/Eventos/EventoPage'
+import { TipoEvento } from './pages/Eventos/TipoEvento'
+import { Evento } from './pages/Eventos/Evento'
+import {TipoEventosPage} from './pages/Eventos/TipoEventosPage'
+import { AgregarNuevoEve } from './pages/Eventos/AgregarNuevoEve'
+
 
 
 
@@ -58,7 +64,7 @@ export const Index = () => {
                 },
                 {
                     path: "/HotelsInfo/:id",
-                    element: <MoreIfo/>
+                    element: <MoreIfo />
                 },
                 {
                     path: '/addHotel',
@@ -104,7 +110,29 @@ export const Index = () => {
                 },
                 {
                     path: '/infoUser',
-                    element: <InfoUserPage/>
+                    element: <InfoUserPage />
+                },
+                {
+                    path: '/eventos',
+                    element: <EventoPage/>,
+                    children:[
+                        {
+                            path: 'tipoEvento',
+                            element: <TipoEvento/>
+                        },
+                        {
+                            path: 'eventoG',
+                            element: <Evento/>
+                        }
+                    ]
+                },
+                {
+                    path: '/addTipo',
+                    element: <TipoEventosPage/>
+                },
+                {
+                    path: '/aggregarNuevo',
+                    element: <AgregarNuevoEve/>
                 }
 
 

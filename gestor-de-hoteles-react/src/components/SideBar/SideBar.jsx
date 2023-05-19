@@ -72,6 +72,13 @@ export const SideBar = () => {
                     <span>..Hotel..</span>
                   </Link>
                 </li>
+                <li>
+                  <Link to='/eventos'>
+                
+                    <FontAwesomeIcon icon={faChartBar} />
+                    <span>Eventos</span>
+                  </Link>
+                </li>
               </>
             ) : <></>
           }

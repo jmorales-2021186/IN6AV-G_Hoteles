@@ -2,6 +2,7 @@
 
 const Type = require('../eventType/type.model')
 const Event = require('./event.model')
+const Hotel = require('../hotel/hotel.model')
 
 exports.addEventEventDefaul = async(req, res)=>{
     try{
@@ -62,7 +63,7 @@ exports.addEvents = async(req, res)=>{
 exports.getEvents = async(req, res)=>{
     try{
         let events = await Event.find().populate('type')
-        return res.send({message: 'Events Found', events})
+        return res.send({events})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error getting Events'})
