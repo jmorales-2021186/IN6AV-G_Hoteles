@@ -33,7 +33,7 @@ export const MoreIfo = () => {
       );
       console.log(data);
       setRoom(data.hotel);
-      console.log(data);
+      console.log(data.hotel);
     } catch (err) {
       console.log(err);
     }

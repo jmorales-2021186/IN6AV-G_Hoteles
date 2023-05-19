@@ -7,6 +7,7 @@ const Hotel = require('./hotel.model')
 const fs = require('fs')
 const path = require('path')
 const reservationModel = require('../reservation/reservation.model')
+const { addRoomDefault } = require('../room/room.controller')
 
 exports.addHotel = async(req, res)=>{
     try{
@@ -22,9 +23,10 @@ exports.addHotel = async(req, res)=>{
         if(checkAdminHotel.role !== 'ADMIN_HOTEL') return res.send({message: 'Can not add this user'})
         //verificar que es admin no tanga ya un hotel asignado
         let adminHotel = await Hotel.findOne({admin: data.admin})
+
+
         if(adminHotel) return res.send({message: 'Debes agregar un administrador que no tenga ya un hotel'})
-        let AddRoomDafault = await Room.findOne({name: 'Default'})
-        data.room = AddRoomDafault._id;
+
         let AddEventDafault = await Event.findOne({name: 'Ninguno'})
         data.event = AddEventDafault._id;
         data.NumReservations = 0;
@@ -35,6 +37,15 @@ exports.addHotel = async(req, res)=>{
         data.Reservationes = reser._id
         let hotel = new Hotel(data)
         await hotel.save()
+        const addRoomDafault = {name :"Default", 
+                                size: "-----",
+                            capacity:"0", 
+                        price: "00", 
+                        status: true,
+                    hotel:hotel._id }
+        let room = new Room(addRoomDafault);
+        await room.save();
+
         return res.send({message: 'Hotel saved succesfully', hotel})
     }catch(err){
         console.error(err)
