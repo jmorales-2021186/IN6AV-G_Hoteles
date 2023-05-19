@@ -191,6 +191,7 @@ exports.searchHotelAndVook = async (req, res) => {
                 if (existRoom.status == false) return res.status(404).send({ message: 'This room cannot be reserved' });
                 //Guardar Reser
                 data.total = 0;
+                data.user = userId;
                 let reservation = new Reservation(data)
                 cont = cont + 1;
                 console.log(cont)
@@ -398,7 +399,12 @@ exports.deleteAdminHotel = async(req, res)=>{
     try{
         //Obtener el id a eliminar
         let userId = req.params.id;
-        //Eliminar
+        //validar que no tenga ya una reservacion hecho
+        let inHotel = await Hotel.findOne({admin: userId})
+        if(inHotel) {
+            return res.send({message: 'Tiene un hotel no lo puedes eliminar'});
+        } 
+        console.log(inHotel)
         let userDeleted = await User.findOneAndDelete({_id: userId});
         if(!userDeleted) return res.send({message: 'Account not found and not deleted'});
         return res.send({message: `Account with username ${userDeleted.username} deleted sucessfully`});
@@ -408,12 +414,16 @@ exports.deleteAdminHotel = async(req, res)=>{
     }
 }
 
-
 exports.deleteClient = async(req, res)=>{
     try{
         //Obtener el id a eliminar
         let userId = req.params.id;
-        //Eliminar
+        //validar que no tenga ya una reservacion hecho
+        let reservationHotel = await Reservation.findOne({user: userId})
+        if(reservationHotel) {
+            return res.send({message: 'no puedes eliminar la cuenta si tienes una reservacion'});
+        } 
+        console.log(reservationHotel)
         let userDeleted = await User.findOneAndDelete({_id: userId});
         if(!userDeleted) return res.send({message: 'Account not found and not deleted'});
         return res.send({message: `Account with username ${userDeleted.username} deleted sucessfully`});
