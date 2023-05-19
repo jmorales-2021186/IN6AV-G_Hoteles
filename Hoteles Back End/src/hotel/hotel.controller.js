@@ -88,7 +88,7 @@ exports.getEventInHotel = async(req, res)=>{
 
 exports.getHotel = async(req, res)=>{
     try{
-        let hotelId = req.parms.id
+        let hotelId = req.params.id
         let hotel = await Hotel.findOne({_id: hotelId})
         if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
         return res.send({message: 'Hotel Found ', hotel})

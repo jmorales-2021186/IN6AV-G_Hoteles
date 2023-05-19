@@ -12,6 +12,7 @@ api.put('/uploadImage/:id', upload, roomController.addImage)
 api.get('/getImage/:fileName', upload, roomController.getImage)
 api.delete('/delete/:id', roomController.deleteRoom)
 api.get('/get/:id', roomController.getRoom)
+api.get("/getRoom/:id", roomController.getRoomHotel)
 
 module.exports = api;
 
