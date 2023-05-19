@@ -251,7 +251,7 @@ exports.addRooms = async(req, res)=>{
         if(!hotel) return res.status(500).send({message: 'Hotel not Found '})
         //Crear la habitacion
         let data = req.body;
-        let existRoom = await Room.findOne({name: data.name})
+        let existRoom = await Room.findOne({name: data.name, hotel: data.hotel})
         if(existRoom){
             return res.send({message: 'Room alredy created'})
         }
